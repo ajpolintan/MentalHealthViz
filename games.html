@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Used Lecture Code as Reference-->
+    <!-- Also used: https://observablehq.com/@d3/scatterplot/2?intent=fork 
+        to learn how to create axes titles -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3 Bar Chart from Array</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        /* CSS styles for the chart */
+        .bar {
+            fill: steelblue;
+        }
+
+        .bar:hover {
+            fill: #86CECB
+
+        }
+
+        .axis-x path,
+        .axis-y path {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis-x .tick line,
+        .axis-y .tick line {
+            stroke: #ccc;
+        }
+
+        .axis text {
+            font-size: 12px;
+        }
+
+        h1 {
+            color: #E12885
+
+        }
+    </style>
+</head>
+<body>
+    <h1> Bar Chart for Metric Sales from Video Games between 2003-2010</h1>
+    <div id="chart-container"></div>
+    <script>
+        // Sample array data
+        d3.csv("games.csv").then(function(data) {
+           console.log(data[0].Sales);
+           console.log(data[1].Publishers);
+      
+      
+        
+      
+
+        // Set up the SVG container
+        const svgWidth = 1000;
+        const svgHeight = 400;
+        const margin = { top: 20, right: 20, bottom: 50, left: 40 };
+        const width = svgWidth - margin.left - margin.right;
+        const height = svgHeight - margin.top - margin.bottom;
+
+        const svg = d3.select("#chart-container")
+            .append("svg")
+            .attr("width", svgWidth)
+            .attr("height", svgHeight);
+
+        const chart = svg.append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Convert string values to numbers
+        data.forEach(function(d) {
+            d.Sales = +d.Sales;
+        });
+
+        // Define X and Y scales
+        const x = d3.scaleBand()
+            .domain(data.map(d => d.Publishers))
+            .range([0, width])
+            .padding(0.1);
+            
+        
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.Sales)])
+            .nice()
+            .range([height, 0]);
+
+        // Add X and Y axes
+        chart.append("g")
+            .attr("class", "axis axis-x")
+            .attr("transform", `translate(0, ${height})`)
+            .call(d3.axisBottom(x))
+            .call((g) => g.select(".tick:last-of-type text").clone()
+                .attr("x", -40)
+                .attr("y", 25)
+                .attr("font-weight", "bold")
+                .text("Video Game Companies"))
+
+
+
+        chart.append("g")
+            .attr("class", "axis axis-y")
+            .call(d3.axisLeft(y).ticks(6))
+            .call((g) => g.select(".tick:last-of-type text").clone()
+                .attr("x", 10)
+                .attr("text-anchor", "start")
+                .attr("font-weight", "bold")
+                .text("Metric Sales (In Millions)")
+                )
+
+                
+
+
+        // Add bars
+        chart.selectAll(".bar")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", d => x(d.Publishers))
+            .attr("y", d => y(d.Sales))
+            .attr("width", x.bandwidth())
+            .attr("height", d => height - y(d.Sales));
+          });
+    </script>
+</body>
+</html>
