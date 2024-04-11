@@ -100,7 +100,7 @@
     </style>
 </head>
 <body>
-    <h1 class="title"> Line Charts for Suicide Counts for Men</h1> 
+    <h1 class="title"> Line Charts for Suicide Counts for Men in the United States in 2021</h1> 
 
     <div id="chart-container"></div>
     <script>
@@ -164,6 +164,7 @@
             .nice()
             .range([height, 0])
         
+            
       
         // Add X and Y axes
         chart.append("g")
@@ -184,7 +185,7 @@
                 .attr("x", 9)
                 .attr("text-anchor", "start")
                 .attr("font-weight", "")
-                .text("Suicide Count"))
+                .text("Male Suicide Count"))
         
         chart.append("path")
             .datum(male)
@@ -198,6 +199,121 @@
 
         chart.selectAll("circle")
             .data(male)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) { return x(d.date) })
+            .attr("cy",  function(d) { return y(d.count) })
+            .attr("r", 4)
+            .style("fill", "#40E0D0")
+            .append("title")
+            .text(function(d) {
+                    return "Suicide Rate" + d.rate;
+            })
+        
+        d3.select("svg")
+            .append("g")
+            .attr("class","annotation-group")
+            .call(makeAnnotations)
+          });
+        
+    </script>
+    <div id="second-container"></div>
+    <script>
+        // Sample array data
+        d3.csv("suicide_range.csv", function(d) { 
+            return {
+              date: d3.timeParse("%Y")(d.Year),
+              sex: d.Sex,
+              count: +d.SuicideCount,
+              rate: +d.DeathRatePer100K,
+              code: d.CountryCode,
+              country: d.CountryName,
+
+            };
+        }).then(function(data) {
+          console.log(data[0])
+          const sex = d3.group(data, d => d.sex)
+          const male = sex.get("Male")
+          const female = sex.get("Female")
+
+          console.log(male[1])
+        // Set up the SVG container
+        const svgWidth = 800;
+        const svgHeight = 300;
+        const margin = { top: 20, right: 90, bottom: 40, left: 50 };
+        const width = svgWidth - margin.left - margin.right;
+        const height = svgHeight - margin.top - margin.bottom;
+
+        const annotations = [
+        {
+            note: { 
+                label: "November 2011",
+                title: "Unemployment Rate: 8.6"
+            },
+            x: 848,
+            y: 290,
+            dy: 100,
+            dx: -167,
+            type: d3.annotationCalloutCircle,
+        },
+        ];
+
+        const makeAnnotations = d3.annotation().annotations(annotations);
+
+        const svg = d3.select("#second-container")
+            .append("svg")
+            .attr("width", svgWidth)
+            .attr("height", svgHeight);
+
+        const chart = svg.append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+
+        const x = d3.scaleTime()
+            .domain(d3.extent(data, function(d) { return d.date}))
+            .nice()
+            .range([0, width])
+
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(female, d => d.count)])
+            .nice()
+            .range([height, 0])
+        
+            
+      
+        // Add X and Y axes
+        chart.append("g")
+            .attr("class", "axis axis-x")
+            .attr("transform", `translate(0, ${height})`)
+            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")))
+            .call((g) => g.select(".tick:last-of-type text").clone()
+                .attr("x", 0)
+                .attr("y", 25)
+                .attr("font-weight", "bold")
+                .text(""))
+        
+
+        chart.append("g")
+            .attr("class", "axis axis-y")
+            .call(d3.axisLeft(y).ticks(8))
+            .call((g) => g.select(".tick:last-of-type text").clone()
+                .attr("x", 9)
+                .attr("text-anchor", "start")
+                .attr("font-weight", "")
+                .text("Female Suicide Count"))
+        
+        chart.append("path")
+            .datum(female)
+            .attr("fill", "none")
+            .attr("stroke","#36454F")
+            .attr("stroke-width", 2)
+            .attr("d", d3.line()
+                .x(function(d) { return x(d.date) })
+                .y(function(d) { return y(d.count) })
+            )
+
+        chart.selectAll("circle")
+            .data(female)
             .enter()
             .append("circle")
             .attr("cx", function(d) { return x(d.date) })
