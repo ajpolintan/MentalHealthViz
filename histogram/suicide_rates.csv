@@ -1,0 +1,39 @@
+RegionCode,RegionName,CountryCode,CountryName,Year,Sex,AgeGroup,Generation,SuicideCount,CauseSpecificDeathPercentage,DeathRatePer100K,Population,GDP,GDPPerCapita,GrossNationalIncome,GNIPerCapita,InflationRate,EmploymentPopulationRatio
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,0-14 years,Generation Alpha,0,0,0,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,0-14 years,Generation Alpha,0,0,0,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,0-14 years,Generation Alpha,7,0.50909091,0.06885899,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,0-14 years,Generation Alpha,357,16.84756961,3.32272976,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,15-24 years,Generation Z,1780,18.34295136,16.35354978,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,15-24 years,Generation Z,3463,19.02015708,30.78756968,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,25-34 years,Millennials,3607,14.20470208,29.79149341,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,25-34 years,Millennials,3616,11.12033705,30.44855453,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,35-54 years,Generation X,3278,8.74599787,29.6828902,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,35-54 years,Generation X,2959,6.70838151,28.95055463,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,35-54 years,Generation X,2743,5.05873891,27.63924846,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,35-54 years,Generation X,2889,3.54256845,28.41066101,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,55-74 years,Baby Boomers,2896,2.36812194,27.33912868,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,55-74 years,Baby Boomers,2672,1.56559442,26.37036587,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,55-74 years,Baby Boomers,2160,1.10109702,24.98207594,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,55-74 years,Baby Boomers,1980,0.88879712,28.85152147,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,75+ years,Silent Generation,1556,0.70648596,34.21527831,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,75+ years,Silent Generation,1180,0.55622596,40.99801681,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Male,75+ years,Silent Generation,1211,0.32374918,47.3288141,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,0-14 years,Generation Alpha,0,0,0,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,0-14 years,Generation Alpha,0,0,0,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,0-14 years,Generation Alpha,2,0.19398642,0.02056816,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,0-14 years,Generation Alpha,241,16.62068966,2.34347735,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,15-24 years,Generation Z,563,15.20388874,5.38273183,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,15-24 years,Generation Z,722,10.78738981,6.6378597,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,25-34 years,Millennials,815,8.31462967,6.98175124,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,25-34 years,Millennials,824,5.65856338,7.16592962,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,35-54 years,Generation X,843,4.45489616,7.73152761,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,35-54 years,Generation X,782,3.20137553,7.61955095,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,35-54 years,Generation X,812,2.54377996,8.06678984,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,35-54 years,Generation X,957,1.97964503,9.43054766,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,55-74 years,Baby Boomers,930,1.23478099,8.68879619,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,55-74 years,Baby Boomers,769,0.6997716,7.20915242,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,55-74 years,Baby Boomers,584,0.433183,6.1272819,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,55-74 years,Baby Boomers,420,0.24632131,5.28682405,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,75+ years,Silent Generation,276,0.14632439,4.87619931,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,75+ years,Silent Generation,158,0.0757278,4.20397249,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946
+NAC,North America and the Caribbean,USA,United States of America,2021,Female,75+ years,Silent Generation,127,0.02240946,2.93107654,332031554,2.33151E+13,70219.47245,2.37053E+13,71130,4.697858864,57.946

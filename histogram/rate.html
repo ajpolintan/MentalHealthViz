@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D3 Bar Chart from Array</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    
     <style>
         /* CSS styles for the chart */
         .bar {
@@ -36,24 +37,30 @@
         }
 
         h1 {
-            color: #E12885
-
+            font-weight: 100;
+            font-family: "Quicksand", sans-serif;
+            font-optical-sizing: auto;
         }
+
+       
     </style>
 </head>
 <body>
-    <h1> Bar Chart for Metric Sales from Video Games between 2003-2010</h1>
+    <h1> Suicide Rates of Based on Age Range for Men and Women in 2021</h1>
     <div id="chart-container"></div>
     <script>
         // Sample array data
-        d3.csv("games.csv").then(function(data) {
-           console.log(data[0].Sales);
-           console.log(data[1].Publishers);
+        d3.csv("suicide_rates.csv", function(d) { 
+            return {
+              generation: d.Generation, 
+              count: +d.SuicideCount, 
+              age: d.AgeGroup, 
+              year: d.Year,
+              country: d.CountryName,
+            };
+        }).then(function(data) {
+           console.log(data[0]);
       
-      
-        
-      
-
         // Set up the SVG container
         const svgWidth = 1000;
         const svgHeight = 400;
@@ -70,19 +77,16 @@
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
         // Convert string values to numbers
-        data.forEach(function(d) {
-            d.Sales = +d.Sales;
-        });
-
+   
         // Define X and Y scales
         const x = d3.scaleBand()
-            .domain(data.map(d => d.Publishers))
+            .domain(data.map(d => d.age))
             .range([0, width])
             .padding(0.1);
             
         
         const y = d3.scaleLinear()
-            .domain([0, d3.max(data, d => d.Sales)])
+            .domain([0, d3.max(data, d => d.count)])
             .nice()
             .range([height, 0]);
 
@@ -95,7 +99,7 @@
                 .attr("x", -40)
                 .attr("y", 25)
                 .attr("font-weight", "bold")
-                .text("Video Game Companies"))
+                .text("Age Range"))
 
 
 
@@ -106,7 +110,7 @@
                 .attr("x", 10)
                 .attr("text-anchor", "start")
                 .attr("font-weight", "bold")
-                .text("Metric Sales (In Millions)")
+                .text("Suicide Count")
                 )
 
                 
@@ -118,11 +122,14 @@
             .enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("x", d => x(d.Publishers))
-            .attr("y", d => y(d.Sales))
+            .style("fill", "#40E0D0")
+
+            .attr("x", d => x(d.age))
+            .attr("y", d => y(d.count))
             .attr("width", x.bandwidth())
-            .attr("height", d => height - y(d.Sales));
+            .attr("height", d => height - y(d.count));
           });
     </script>
+    <a href="/index.html" class="viz"> HOME </a>
 </body>
 </html>

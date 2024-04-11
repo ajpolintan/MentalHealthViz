@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- References include bar chart with no csv file from lecture + A4 reading -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3 Unemployment Rate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+    <style>
+        /* CSS styles for the chart */
+        .bar {
+            fill: steelblue;
+        }
+
+        .bar:hover {
+            fill: orange;
+        }
+
+        .axis-x path,
+        .axis-y path {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis-x .tick line,
+        .axis-y .tick line {
+            stroke: #ccc;
+            
+        }
+
+        .axis-y {
+            color: black;
+            font-family: "Alegreya Sans", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        .axis-x {
+            color: black;
+            font-family: "Alegreya Sans", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+        .axis text {
+            font-size: 12px;
+        }
+        
+        .title {
+            color: black;
+            font-family: "Alegreya Sans", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        .annotation text {
+            color: red;
+            fill: red;
+            color: black;
+            font-family: "Alegreya Sans", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        .annotation path {
+            stroke: red;
+        } 
+
+        .bad_axis-x {
+            color: green;
+            font-family: "Alegreya Sans", sans-serif;
+            font-weight: 1000;
+            font-style: bold;
+        }
+
+        .bad_axis-y {
+            color: greenyellow;
+            font-family: "Alegreya Sans", sans-serif;
+            font-weight: 1000;
+            font-style: bold;
+        }
+        .bad_axis-x  {
+            font-size: 20px;
+
+        }
+
+        p {
+            color: black;
+            font-family: "Alegreya Sans", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+    <h1 class="title"> Line Charts for Suicide Counts for Men</h1> 
+
+    <div id="chart-container"></div>
+    <script>
+        // Sample array data
+        d3.csv("suicide_range.csv", function(d) { 
+            return {
+              date: d3.timeParse("%Y")(d.Year),
+              sex: d.Sex,
+              count: +d.SuicideCount,
+              rate: +d.DeathRatePer100K,
+              code: d.CountryCode,
+              country: d.CountryName,
+
+            };
+        }).then(function(data) {
+          console.log(data[0])
+          const sex = d3.group(data, d => d.sex)
+          const male = sex.get("Male")
+          const female = sex.get("Female")
+
+          console.log(male[1])
+        // Set up the SVG container
+        const svgWidth = 800;
+        const svgHeight = 300;
+        const margin = { top: 20, right: 90, bottom: 40, left: 50 };
+        const width = svgWidth - margin.left - margin.right;
+        const height = svgHeight - margin.top - margin.bottom;
+
+        const annotations = [
+        {
+            note: { 
+                label: "November 2011",
+                title: "Unemployment Rate: 8.6"
+            },
+            x: 848,
+            y: 290,
+            dy: 100,
+            dx: -167,
+            type: d3.annotationCalloutCircle,
+        },
+        ];
+
+        const makeAnnotations = d3.annotation().annotations(annotations);
+
+        const svg = d3.select("#chart-container")
+            .append("svg")
+            .attr("width", svgWidth)
+            .attr("height", svgHeight);
+
+        const chart = svg.append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+
+        const x = d3.scaleTime()
+            .domain(d3.extent(data, function(d) { return d.date}))
+            .nice()
+            .range([0, width])
+
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(male, d => d.count)])
+            .nice()
+            .range([height, 0])
+        
+      
+        // Add X and Y axes
+        chart.append("g")
+            .attr("class", "axis axis-x")
+            .attr("transform", `translate(0, ${height})`)
+            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")))
+            .call((g) => g.select(".tick:last-of-type text").clone()
+                .attr("x", 0)
+                .attr("y", 25)
+                .attr("font-weight", "bold")
+                .text(""))
+        
+
+        chart.append("g")
+            .attr("class", "axis axis-y")
+            .call(d3.axisLeft(y).ticks(8))
+            .call((g) => g.select(".tick:last-of-type text").clone()
+                .attr("x", 9)
+                .attr("text-anchor", "start")
+                .attr("font-weight", "")
+                .text("Suicide Count"))
+        
+        chart.append("path")
+            .datum(male)
+            .attr("fill", "none")
+            .attr("stroke","#36454F")
+            .attr("stroke-width", 2)
+            .attr("d", d3.line()
+                .x(function(d) { return x(d.date) })
+                .y(function(d) { return y(d.count) })
+            )
+
+        chart.selectAll("circle")
+            .data(male)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) { return x(d.date) })
+            .attr("cy",  function(d) { return y(d.count) })
+            .attr("r", 4)
+            .style("fill", "#40E0D0")
+            .append("title")
+            .text(function(d) {
+                    return "Suicide Rate" + d.rate;
+            })
+        
+        d3.select("svg")
+            .append("g")
+            .attr("class","annotation-group")
+            .call(makeAnnotations)
+          });
+        
+    </script>
+    <a href="/index.html" class="viz"> HOME </a>
+
+</body>
+</html>
