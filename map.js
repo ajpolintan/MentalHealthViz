@@ -7,7 +7,7 @@
         // Sample array data
       
         //path generator
-        var tooltip = d3.select("#chart-container")
+        var tooltip = d3.select("#map-container")
             .attr("class", "tooltip")
             .append("div")
             .style("position", "absolute")
@@ -25,7 +25,7 @@
         var path = d3.geoPath().projection(projection);
     
         //Creeating the svg element
-        const svg = d3.select("#chart-container")
+        const svg = d3.select("#map-container")
             .append("svg")
             .attr("width", svgWidth)
             .attr("height", svgHeight);
@@ -35,7 +35,7 @@
             .attr("transform", `translate(${margin.left},${margin.top})`);
     
     
-        d3.csv("crisis_center.csv", function(d) {
+        d3.csv("csv/crisis_center.csv", function(d) {
             return {
                 state: d.State,
                 name: d.Name,
@@ -86,7 +86,7 @@
                     return "STATE:" + d.properties.name;
                    })
                 
-                d3.csv("crisis_center.csv", function(d){
+                d3.csv("csv/crisis_center.csv", function(d){
                     return {
                         state: d.State,
                         name: d.Name,
