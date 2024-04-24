@@ -135,16 +135,21 @@
 
 
     <p> Mental Visualization Project focusing on the user
-        to learn about current suicide statistics in the United States, <br>
+        to learn about current suicide statistics for men in the United States, <br>
         mental factors correlations that may contribute to mental issues,
         and to give users resources <br> to find Mental Resources such as their nearest crisis center / various mental health organizations.
-        <br> <br> This website will feature interactable line charts of suicide rates in the US, histograms of age ranges for suicide count to see <br> who is most affected
-        parallel coordinates chart to find correlations with the ability to brush data <br> and a map of locations with crisis city centers
+        <br> <br> This website will feature interactable line charts of suicide rates in the US, interactable histograms of age ranges for suicide count to see <br> who is most affected,
+        scatterplots and small multiple line charts to show potential factors for these suicide statistics,<br> and a map of locations with crisis city centers across the United States.
     </p>
    
 
     <h1> Line Chart of Suicide Stats for Men in 2021</h1>
-    <p> The suicide rate and count for men in the United States has been increasing </p>
+    <p> Select to change y-axis for the chart. <br> 
+        <br> <b>count </b>: The count of suicides
+        <br> <b>crude_deathrate </b>: The raw number of suicides per 100,000 people
+        <br> <b>agestd_rate </b>: Adjust suicide rate for all age differences between population per 100,000 people</p>
+    <p> <b> Takeaway: </b>The suicide rate and count for men in the United States has been increasing </p>
+
     <div class="button"> 
         <select id="selectButton" class="linechart"></select>
     </div>
@@ -156,8 +161,10 @@
     <script src="line.js"></script>
 
     <h1> Histogram of Suicide Count for Men from 2011-2021</h1>
-    <p> The most affected age range in 2021 were adults between 25-34 years
-        <br> All age ranges increased in Suicide Count for Men
+    <p> Use the slider to view how suicide count is changing for different age ranges, year by year</p>
+
+    <p> <b> Takeaway: </b> The most affected age range in 2021 were adults between 25-34 years
+        <br> All age ranges before 34 years of age increased in Suicide Count for Men
     </p>
   
 
@@ -170,7 +177,8 @@
     </div>
 
     <h1> Small Multiples of Mental Health Disorders Timeline from 1990-2017</h1>
-    <p> One key disorder that is increasing is Drug Use in the United States. Drug Use may be correlated with this rise of suicides </p>
+    <p> Each disorder represents the percentage of people with that disorder in the US within that year</p>
+    <p> <b> Takeaway: </b> One key disorder that is increasing is Drug Use in the United States. Drug Use may be correlated with this rise of suicides </p>
 
     <div id="sm-container"></div>
     <div id="tools"></div>
@@ -181,7 +189,13 @@
     </div>
 
     <h1> Scatterplots of Suicide Death Rate per 100k vs Economic Stats</h1>
-    <p> The US has a low employment population rate compared to other countries which also may be correlated with this rise.
+    <p> Select to change y-axis for the chart. US has a black stroked line around its circle<br> 
+        <br> <b>employment </b>: Employment Population Ratio
+        <br> <b>inflation </b>: Inflation rate
+        <br> <b>gdp </b>: The gdp of that country
+        <br> <b>population </b>: The current population</p>
+
+    <p> <b> Takeaway: </b> The US has a low employment population rate compared to other countries which also may be correlated with this rise.
         <br> Inflation, Population, and GDP do not share a relationship with Suicide Death Rate per 100k. 
     </p>
     <div class="button"> 

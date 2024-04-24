@@ -305,6 +305,8 @@ var circles = chart.selectAll("circle")
                     console.log("THIS HAS CHANGED")
                     tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p>Rate: " + d.age_rate  + "<br>Year: " + d.year + "</p>" )
                    
                     d3.select(this)
