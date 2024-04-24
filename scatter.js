@@ -45,8 +45,8 @@
         .append("div")
         .style("position", "absolute")
         .style("visibility", "hidden")
-        .style("background-color", "white")
-        .style("border", "solid")
+        .style("background-color", "black")
+        .style("color", "white")
         .style("border-width", "1px")
         .style("border-radius", "5px")
         .style("padding", "10px")
@@ -97,6 +97,8 @@
         .on("mouseover", function(event, d) {
                         tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p>Country: " + d.country  + "<br>Employment Popuation Ratio: " + d.employment + "</p>" )
 
                         console.log(d)
@@ -105,7 +107,7 @@
 
                         
                         //filter
-                        chart.selectAll("circle").style("fill", "black")
+                        chart.selectAll("circle").style("fill", "#003f5c")
                         d3.select(this).style("fill","#40E0D0")
                     }) .on("mouseout", function(d) {
                         d3.select(this).attr("r",3.5)
@@ -180,7 +182,7 @@
                 d3.select(this)
                     .attr("r",4.5)
 
-                    chart.selectAll("circle").style("fill", "black")
+                    chart.selectAll("circle").style("fill", "#003f5c")
 
                     d3.select(this).style("fill","#40E0D0")
                     
@@ -224,7 +226,7 @@
                 d3.select(this)
                 .attr("r",4.5)
                 //filter
-                chart.selectAll("circle").style("fill", "black")
+                chart.selectAll("circle").style("fill", "#003f5c")
                 d3.select(this).style("fill","#40E0D0")
              }).on("mouseout", function(d) {
                 d3.select(this).attr("r",3.5)
@@ -272,7 +274,7 @@
                     d3.select(this)
                         .attr("r",4.5)
 
-                    chart.selectAll("circle").style("fill", "black")
+                    chart.selectAll("circle").style("fill", "#003f5c")
                         d3.select(this).style("fill","#40E0D0")
                 })
         }
@@ -314,7 +316,7 @@
                     d3.select(this)
                         .attr("r",4.5)
 
-                    chart.selectAll("circle").style("fill", "black")
+                    chart.selectAll("circle").style("fill", "#003f5c")
                         d3.select(this).style("fill","#40E0D0")
                 })
         }

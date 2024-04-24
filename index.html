@@ -25,7 +25,7 @@
         h1 {
             color: "black";
             font-family: "Alegreya Sans", sans-serif;
-            font-weight: 300;
+            font-weight: 500;
             font-style: bold;
             text-align: center;
         }
@@ -79,8 +79,48 @@
                 font-size: 30px;
         }
 
+        .tooltip {
+            font-family: "Alegreya Sans", sans-serif;
+            font-style: bold;
+            
+        }
         
+        .source {
+            text-align: center;
+            font-weight: 50;
+            font-size: 14px;
+        }
+
+        #line-container {
+            text-align: center;
+        }
+        #histo-container {
+            text-align: center;
+        }
         
+        #slider-range {
+            text-align: center;
+
+        }
+        #sm-container {
+            text-align: center;
+
+        }
+        #map-container {
+            text-align: center;
+        }
+
+        .button {
+            font-family: "Alegreya Sans", sans-serif;
+            text-align: center;
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
+        #scat-container {
+            text-align: center;
+        }
        
     </style>
 </head>
@@ -105,18 +145,29 @@
 
     <h1> Line Chart of Suicide Stats for Men in 2021</h1>
     <p> The suicide rate and count for men in the United States has been increasing </p>
-    <select id="selectButton" class="linechart"></select>
+    <div class="button"> 
+        <select id="selectButton" class="linechart"></select>
+    </div>
     <div id="line-container" ></div>
+    <div class="source">
+        <p>source: https://www.kaggle.com/datasets/ronaldonyango/global-suicide-rates-1990-to-2022 <br> 
+            sourced from: World Health Organization and World Bank Open Data</p>
+    </div>
     <script src="line.js"></script>
 
     <h1> Histogram of Suicide Count for Men from 2011-2021</h1>
     <p> The most affected age range in 2021 were adults between 25-34 years
         <br> All age ranges increased in Suicide Count for Men
     </p>
+  
 
     <div id="histo-container"></div>
     <div id="slider-range"></div>
     <script src="histo.js"></script>
+    <div class="source">
+        <p>source: https://www.kaggle.com/datasets/ronaldonyango/global-suicide-rates-1990-to-2022 <br> 
+            sourced from: World Health Organization and World Bank Open Data</p>
+    </div>
 
     <h1> Small Multiples of Mental Health Disorders Timeline from 1990-2017</h1>
     <p> One key disorder that is increasing is Drug Use in the United States. Drug Use may be correlated with this rise of suicides </p>
@@ -124,14 +175,24 @@
     <div id="sm-container"></div>
     <div id="tools"></div>
     <script src="sm.js"></script>
+    <div class="source">
+        <p>source: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder <br> 
+            sourced from: Our World In Data</p>
+    </div>
 
     <h1> Scatterplots of Suicide Death Rate per 100k vs Economic Stats</h1>
     <p> The US has a low employment population rate compared to other countries which also may be correlated with this rise.
         <br> Inflation, Population, and GDP do not share a relationship with Suicide Death Rate per 100k. 
     </p>
-    <select id="scatButton"></select>
+    <div class="button"> 
+        <select id="scatButton" class ="button"></select>
+    </div>
     <div id="scat-container"></div>
     <script src="scatter.js"></script>
+    <div class="source">
+        <p>source: https://www.kaggle.com/datasets/ronaldonyango/global-suicide-rates-1990-to-2022 <br> 
+            sourced from: World Health Organization and World Bank Open Data</p>
+    </div>
 
 
     <h1> Map of Suicide / Mental Health Crisis Centers in the U.S </h1>
@@ -139,6 +200,9 @@
         Click on any of the circle's to visit each Crisis Center's website</p>
     <div id="map-container"></div>
     <script src="map.js"></script>
+    <div class="source">
+        <p>source:https://988lifeline.org/crisis-centers-by-state-and-u-s-territory/ </p>
+    </div>
 
     
 </body>

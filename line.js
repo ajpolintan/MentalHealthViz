@@ -40,7 +40,8 @@ var tooltip = d3.select("#line-container")
     .append("div")
     .style("position", "absolute")
     .style("visibility", "hidden")
-    .style("background-color", "white")
+    .style("background-color", "black")
+    .style("color", "white")
     .style("border", "solid")
     .style("border-width", "1px")
     .style("border-radius", "5px")
@@ -146,7 +147,7 @@ var circles = chart.selectAll("circle")
                    
                     d3.select(this).attr("r",4.5)
                     //filter
-                    chart.selectAll("circle").style("fill", "black")
+                    chart.selectAll("circle").style("fill", "#9ecae1")
                     d3.select(this).style("fill","#40E0D0")
                 }) .on("mouseout", function(d) {
                     d3.select(this).attr("r",3.5)
@@ -203,8 +204,8 @@ var circles = chart.selectAll("circle")
                     d3.select(this)
                         .attr("r",4.5)
 
-                    chart.selectAll("circle").style("fill", "black")
-                       d3.select(this).style("fill","#40E0D0")
+                        chart.selectAll("circle").style("fill", "#9ecae1")
+                        d3.select(this).style("fill","#40E0D0")
             })  
         }
 
@@ -253,7 +254,7 @@ var circles = chart.selectAll("circle")
                     d3.select(this)
                     .attr("r",4.5)
                     //filter
-                    chart.selectAll("circle").style("fill", "black")
+                    chart.selectAll("circle").style("fill", "#9ecae1")
                     d3.select(this).style("fill","#40E0D0")
                 }) .on("mouseout", function(d) {
                     d3.select(this).attr("r",3.5)
@@ -309,8 +310,8 @@ var circles = chart.selectAll("circle")
                     d3.select(this)
                         .attr("r",4.5)
 
-                    chart.selectAll("circle").style("fill", "black")
-                       d3.select(this).style("fill","#40E0D0")
+                    chart.selectAll("circle").style("fill", "#9ecae1")
+                        d3.select(this).style("fill","#40E0D0")
             })
         }
     }

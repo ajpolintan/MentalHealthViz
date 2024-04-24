@@ -40,7 +40,8 @@
         .append("div")
         .style("position", "absolute")
         .style("visibility", "hidden")
-        .style("background-color", "white")
+        .style("background-color", "black")
+        .style("color", "white")
         .style("border", "solid")
         .style("border-width", "1px")
         .style("border-radius", "5px")
@@ -134,11 +135,24 @@
         .attr("height", d => height - y(d.count))
         .on("mouseover", function(event, d) {
             console.log("HEYYY")
+
+            tooltip.style("opacity",1)
+                .style("visibility", "visible")
+                .style("left", (event.pageX) +"px")
+                .style("top",  (event.pageY) + "px")
+                .html("<p> Count: " + d.count  + "<br>Year: " + d.year + "</p>" )
+               
+            chart.selectAll(".bar").style("fill", "#9ecae1")
             d3.select(this)
-            .style("fill", "#008080")})
+                .style("fill", "#008080")})
         .on("mouseout", function(event, d) { 
+
+            tooltip.style("visibility", "hidden")
+                    .style("stroke","none")
+            chart.selectAll(".bar").style("fill", "#40E0D0")
+
             d3.select(this)
-            .style("fill", "#40E0D0")
+                .style("fill", "#40E0D0")
         })
       
      //we did it :]
