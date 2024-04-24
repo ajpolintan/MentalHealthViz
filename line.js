@@ -33,7 +33,7 @@ d3.select("#selectButton")
     .append('option')
     .text(d => d)
     .attr("value", d => d)
-    
+
 
 var tooltip = d3.select("#line-container")
     .attr("class", "tooltip")
@@ -82,7 +82,17 @@ const y = d3.scaleLinear()
     .nice()
     .range([height, 0])
 
-    
+//Gridlines
+const lines = chart.selectAll("yGrid") 
+    .data(y.ticks(8))
+    .join("line")
+    .attr("x1", 0)
+    .attr("x2", width)
+    .attr("y1", d => y(d))
+    .attr("y2", d => y(d))
+    .attr("stroke", "#e0e0e0")
+    .attr("stroke-width", .5)
+
 
 // Add X and Y axes
 chart.append("g")
@@ -94,7 +104,6 @@ chart.append("g")
         .attr("y", 25)
         .attr("font-weight", "bold")
         .text(""))
-
 
 var yAxis = d3.axisLeft().scale(y)
 
@@ -152,9 +161,18 @@ var circles = chart.selectAll("circle")
                 .transition()
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8))
-                
+            
+            lines.join("line")
+                .data(y.ticks().slice(3))
+                .transition()
+                .duration(3000)
+                .attr("x1", 0)
+                .attr("x2", width)
+                .attr("y1", d => y(d))
+                .attr("y2", d => y(d))
+                .attr("stroke", "#e0e0e0")
+                .attr("stroke-width", .5)    
 
-             
             paths.join("path")
                 .transition()
                 .duration(3000)
@@ -181,9 +199,7 @@ var circles = chart.selectAll("circle")
 
                     chart.selectAll("circle").style("fill", "black")
                        d3.select(this).style("fill","#40E0D0")
-            })
-                 
-            
+            })  
         }
 
         if (selectedOption == "count") {
@@ -194,9 +210,17 @@ var circles = chart.selectAll("circle")
                 .transition()
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8)) 
-               
 
-
+            lines.join("line")
+                .data(y.ticks().slice())
+                .transition()
+                .duration(3000)
+                .attr("x1", 0)
+                .attr("x2", width)
+                .attr("y1", d => y(d))
+                .attr("y2", d => y(d))
+                .attr("stroke", "#e0e0e0")
+                .attr("stroke-width", .5)   
 
             paths.join("path")
                 .transition()
@@ -229,7 +253,8 @@ var circles = chart.selectAll("circle")
                     .style("stroke","none")
                     //filter
                     chart.selectAll("circle").style("fill", "#40E0D0")
-                })           
+                })      
+                     
         }
 
         if (selectedOption == "agestd_rate") {
@@ -241,7 +266,16 @@ var circles = chart.selectAll("circle")
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8))
                 
-
+            lines.join("line")
+                .data(y.ticks().slice(3))
+                .transition()
+                .duration(3000)
+                .attr("x1", 0)
+                .attr("x2", width)
+                .attr("y1", d => y(d))
+                .attr("y2", d => y(d))
+                .attr("stroke", "#e0e0e0")
+                .attr("stroke-width", .5) 
 
             paths.join("path")
                 .transition()

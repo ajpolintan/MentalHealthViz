@@ -54,6 +54,17 @@
         .nice()
         .range([height, 0]);
 
+
+    const lines = chart.selectAll("yGrid") 
+        .data(y.ticks().slice(1))
+        .join("line")
+        .attr("x1", 0)
+        .attr("x2", width)
+        .attr("y1", d => y(d))
+        .attr("y2", d => y(d))
+        .attr("stroke", "#e0e0e0")
+        .attr("stroke-width", .5)
+
     //SLIDER
     const sliderRange = d3
         .sliderBottom()

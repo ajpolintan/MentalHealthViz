@@ -63,6 +63,16 @@
     const y = d3.scaleLinear()
         .domain([35, d3.max(data, d => d.employment)])
         .range([height, 0]);
+    
+    const lines = chart.selectAll("yGrid") 
+        .data(y.ticks(8))
+        .join("line")
+        .attr("x1", 0)
+        .attr("x2", width)
+        .attr("y1", d => y(d))
+        .attr("y2", d => y(d))
+        .attr("stroke", "#e0e0e0")
+        .attr("stroke-width", .5)
 
     // Add bars
     var circles = chart.selectAll("circle")
@@ -141,6 +151,16 @@
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8))
                     
+            lines.join("line")
+                .data(y.ticks().slice())
+                .transition()
+                .duration(3000)
+                .attr("x1", 0)
+                .attr("x2", width)
+                .attr("y1", d => y(d))
+                .attr("y2", d => y(d))
+                .attr("stroke", "#e0e0e0")
+                .attr("stroke-width", .5)  
 
             circles.join("circle") 
                 .transition()
@@ -173,6 +193,17 @@
                 .transition()
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8)) 
+            
+            lines.join("line")
+                .data(y.ticks().slice())
+                .transition()
+                .duration(3000)
+                .attr("x1", 0)
+                .attr("x2", width)
+                .attr("y1", d => y(d))
+                .attr("y2", d => y(d))
+                .attr("stroke", "#e0e0e0")
+                .attr("stroke-width", .5)  
                    
             circles.join("circle") 
                 .transition()
@@ -208,6 +239,16 @@
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8).tickFormat(d3.format(".1e")))
                     
+            lines.join("line")
+                .data(y.ticks().slice(2))
+                .transition()
+                .duration(3000)
+                .attr("x1", 0)
+                .attr("x2", width)
+                .attr("y1", d => y(d))
+                .attr("y2", d => y(d))
+                .attr("stroke", "#e0e0e0")
+                .attr("stroke-width", .5)  
 
             circles.join("circle") 
                 .transition()
@@ -230,7 +271,7 @@
                 })
         }
 
-        if (selectedOption == "population") {
+        if (selectedOption == "population") {  
             y.domain([0,d3.max(data, d => d.population)])
                 
             chart.selectAll(".axis-y")
@@ -238,6 +279,16 @@
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8))
                     
+            lines.join("line")
+                .data(y.ticks())
+                .transition()
+                .duration(3000)
+                .attr("x1", 0)
+                .attr("x2", width)
+                .attr("y1", d => y(d))
+                .attr("y2", d => y(d))
+                .attr("stroke", "#e0e0e0")
+                .attr("stroke-width", .5)  
 
             circles.join("circle") 
                 .transition()
