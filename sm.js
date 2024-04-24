@@ -369,6 +369,8 @@
             d3.select(this).attr("r",2.4)
             tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p> Schizophrenia Rate: " + d.schizo)
     }
 
@@ -376,6 +378,8 @@
             d3.select(this).attr("r",2.7)
             tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p> Bipolar Rate: " + d.bipolar)
     }
     
@@ -384,6 +388,8 @@
             d3.select(this).attr("r",2.7)
             tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p> Bipolar Rate: " + d.bipolar)
     }
 
@@ -391,6 +397,8 @@
             d3.select(this).attr("r",2.7)
             tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p> Drug Disorder Rate: " + d.drug)
     }
 
@@ -398,6 +406,8 @@
             d3.select(this).attr("r",2.7)
             tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p> Anxiety Rate: " + d.anxiety)
     }
 
@@ -405,6 +415,8 @@
             d3.select(this).attr("r",2.7)
             tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p> Depression Rate: " + d.depression)
     }
 

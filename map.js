@@ -123,6 +123,8 @@
                         .on("mouseover", function(event, d) {
                             tooltip.style("opacity",1)
                             .style("visibility", "visible")
+                            .style("left", (event.pageX) +"px")
+                            .style("top",  (event.pageY) + "px")
                             .html("<p> State: " + d.state  + "<br>Name: " + d.name + "</p>" )
 
                             console.log(d)
@@ -131,7 +133,7 @@
                             .style("stroke","black")
 
                             //filter
-                            chart.selectAll("circle").style("fill", "black")
+                            chart.selectAll("circle").style("fill", "#9ecae1")
                             d3.select(this).style("fill","#40E0D0")
                         }) .on("mouseout", function(d) {
                             d3.select(this).attr("r",3.5)

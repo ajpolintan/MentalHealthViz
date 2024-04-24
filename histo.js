@@ -35,6 +35,17 @@
     const beginYear = theYear.get("2011")
     console.log(beginYear)
 
+    var tooltip = d3.select("#line-container")
+        .attr("class", "tooltip")
+        .append("div")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("background-color", "white")
+        .style("border", "solid")
+        .style("border-width", "1px")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .html("<p>I'm a tooltip written in HTML</p><img src='https://github.com/holtzy/D3-graph-gallery/blob/master/img/section/ArcSmal.png?raw=true'></img><br>Fancy<br><span style='font-size: 40px;'>Isn't it?</span>");
     //referenced https://d3-graph-gallery.com/graph/density_filter.html
     let years = Array.from(new Set(data.map(d => d.year)))
     console.log(years[0])
@@ -53,7 +64,6 @@
         .domain([0, d3.max(data, d => d.count)])
         .nice()
         .range([height, 0]);
-
 
     const lines = chart.selectAll("yGrid") 
         .data(y.ticks().slice(1))

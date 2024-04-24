@@ -63,19 +63,36 @@
             font-style: bold;
             text-align: center;
         }
+        
         .testing {
             color:black;
             text-align: left;
             font-size: 12px;
         }
+
+        .header {
+                padding: 40px;
+                text-align: center;
+                background: #1abc9c;
+                font-family: "Alegreya Sans", sans-serif;
+                color: white;
+                font-size: 30px;
+        }
+
+        
+        
+       
     </style>
 </head>
 
 <body>
 
-    <h2>The Mental Health Crisis In the United States</h2> 
+    <div class ="header"> 
+        <h1> Statistics for Suicide for Men in the United States </h1> 
+        <h4>by Allen Jake Polintan</h4>
 
-    <h4>by Allen Jake Polintan</h4>
+    </div>
+
 
     <p> Mental Visualization Project focusing on the user
         to learn about current suicide statistics in the United States, <br>
@@ -84,37 +101,42 @@
         <br> <br> This website will feature interactable line charts of suicide rates in the US, histograms of age ranges for suicide count to see <br> who is most affected
         parallel coordinates chart to find correlations with the ability to brush data <br> and a map of locations with crisis city centers
     </p>
-    <a href="map\map.html" class="viz"> Crisis Map Link </a> 
-    <a href="line\line.html" class="viz"> Line Chart of Suicide Count for Men and Women </a> 
-    <a href="histogram\rate.html" class="viz"> Histogram of Suicide Count per Age Range</a>
-    <a href="scatterplot\scatter.html" class="viz"> Scatterplots for Correlations. Features All Countries</a>
+   
 
-    <img src="cinnamonrol.png" alt="Description of the image">
-    <p class="testing">also unrelated but I wanted to try to add images (not gonna be in final) src:https://sanrio-png.tumblr.com/image/136357356641 </p>
-    
     <h1> Line Chart of Suicide Stats for Men in 2021</h1>
-    <select id="selectButton"></select>
-    <div id="line-container"></div>
+    <p> The suicide rate and count for men in the United States has been increasing </p>
+    <select id="selectButton" class="linechart"></select>
+    <div id="line-container" ></div>
     <script src="line.js"></script>
 
     <h1> Histogram of Suicide Count for Men from 2011-2021</h1>
+    <p> The most affected age range in 2021 were adults between 25-34 years
+        <br> All age ranges increased in Suicide Count for Men
+    </p>
+
     <div id="histo-container"></div>
     <div id="slider-range"></div>
     <script src="histo.js"></script>
 
     <h1> Small Multiples of Mental Health Disorders Timeline from 1990-2017</h1>
+    <p> One key disorder that is increasing is Drug Use in the United States. Drug Use may be correlated with this rise of suicides </p>
+
     <div id="sm-container"></div>
     <div id="tools"></div>
     <script src="sm.js"></script>
 
-    <h1> Small Multiples of Mental Health Disorders Timeline from 1990-2017</h1>
+    <h1> Scatterplots of Suicide Death Rate per 100k vs Economic Stats</h1>
+    <p> The US has a low employment population rate compared to other countries which also may be correlated with this rise.
+        <br> Inflation, Population, and GDP do not share a relationship with Suicide Death Rate per 100k. 
+    </p>
     <select id="scatButton"></select>
     <div id="scat-container"></div>
     <script src="scatter.js"></script>
 
 
     <h1> Map of Suicide / Mental Health Crisis Centers in the U.S </h1>
-    <p class="tooltip"> Click on any of the circle's to visit each Crisis Center's website</p>
+    <p class="tooltip"> If you are in need of help, find your nearest Mental Health Crisis Center in the map below <br>
+        Click on any of the circle's to visit each Crisis Center's website</p>
     <div id="map-container"></div>
     <script src="map.js"></script>
 

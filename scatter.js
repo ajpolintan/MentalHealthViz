@@ -173,7 +173,9 @@
                 console.log("THIS HAS CHANGED")
                 tooltip.style("opacity",1)
                         .style("visibility", "visible")
-                        .html("<p>Country: " + d.countru  + "<br>Employment Popuation Ratio: " + d.employment + "</p>" )
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
+                        .html("<p>Country: " + d.country  + "<br>Employment Popuation Ratio: " + d.employment + "</p>" )
                        
                 d3.select(this)
                     .attr("r",4.5)
@@ -215,6 +217,8 @@
             circles.on("mouseover", function(event, d) {
                 tooltip.style("opacity",1)
                 .style("visibility", "visible")
+                .style("left", (event.pageX) +"px")
+                .style("top",  (event.pageY) + "px")
                 .html("<p> Country: " + d.country  + "<br>Inflation Rate: " + d.inflation + "</p>" )
                 console.log(d)
                 d3.select(this)
@@ -261,6 +265,8 @@
                     console.log("THIS HAS CHANGED")
                     tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p>Country: " + d.country  + "<br>GDP: " + d.gdp + "</p>" )
                        
                     d3.select(this)
@@ -301,6 +307,8 @@
                     console.log("THIS HAS CHANGED")
                     tooltip.style("opacity",1)
                         .style("visibility", "visible")
+                        .style("left", (event.pageX) +"px")
+                        .style("top",  (event.pageY) + "px")
                         .html("<p>Country: " + d.country  + "<br>GDP: " + d.population + "</p>" )
                        
                     d3.select(this)
