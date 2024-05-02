@@ -294,7 +294,7 @@
             .attr("cx",function(d) { return x(d.date) })
             .attr("cy",  function(d) { return y(d.schizo) })
         .attr("r",2.4)
-        .style("fill", "gray")            
+        .style("fill", "#66c2a5")            
         .on("mouseover", s_hover)
         .on("mouseout", exit)
 
@@ -307,7 +307,7 @@
             .attr("cx",function(d) { return x2(d.date) })
             .attr("cy",  function(d) { return y2(d.bipolar) })
         .attr("r", 2.4)
-        .style("fill", "#66c2a5")
+        .style("fill", "#8da0cb")
         .style("fill", "gray")
         .on("mouseover", b_hover)
         .on("mouseout", exit)
@@ -320,7 +320,7 @@
             .attr("cx",function(d) { return x(d.date) })
             .attr("cy",  function(d) { return y3(d.drug) })
         .attr("r", 2.4)
-        .style("fill", "gray")
+        .style("fill", "#fdc086")
         .on("mouseover", dr_hover)
         .on("mouseout", exit)
 
@@ -333,7 +333,7 @@
             .attr("cx",function(d) { return x2(d.date) })
             .attr("cy",  function(d) { return y4(d.anxiety) })
         .attr("r", 2.4)
-        .style("fill", "gray")
+        .style("fill", "#e78ac3")
         .on("mouseover", a_hover)
         .on("mouseout", exit)
 
@@ -345,7 +345,7 @@
             .attr("cx",function(d) { return x3(d.date) })
             .attr("cy",  function(d) { return y5(d.depression) })
         .attr("r", 2.4)
-        .style("fill", "gray")
+        .style("fill", "#a6d854")
         .on("mouseover", d_hover)
         .on("mouseout", exit)
 

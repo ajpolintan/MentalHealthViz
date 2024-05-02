@@ -110,7 +110,7 @@ var yAxis = d3.axisLeft().scale(y)
 
 chart.append("g")
     .attr("class", "axis-y")
-    .call(d3.axisLeft(y).ticks(8))
+    .call(d3.axisLeft(y).ticks(5))
     .call((g) => g.select(".tick:last-of-type text").clone()
         .attr("x", 9)
         .attr("text-anchor", "start")
