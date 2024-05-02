@@ -20,7 +20,7 @@ d3.csv("csv/suicide_range.csv", function(d) {
 // Set up the SVG container
 const svgWidth = 800;
 const svgHeight = 300;
-const margin = { top: 20, right: 90, bottom: 40, left: 50 };
+const margin = { top: 20, right: 90, bottom: 40, left: 65 };
 const width = svgWidth - margin.left - margin.right;
 const height = svgHeight - margin.top - margin.bottom;
 

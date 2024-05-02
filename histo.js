@@ -105,7 +105,7 @@
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x))
         .call((g) => g.select(".tick:last-of-type text").clone()
-            .attr("x", -40)
+            .attr("x", 50)
             .attr("y", 25)
             .attr("font-weight", "bold")
             .text("Age Range"))

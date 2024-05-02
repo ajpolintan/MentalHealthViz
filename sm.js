@@ -13,8 +13,8 @@
       console.log(data[0])
   
     // Set up the SVG container
-    const svgWidth = 950;
-    const svgHeight = 600;
+    const svgWidth = 1000;
+    const svgHeight = 700;
     const margin = { top: 40, right: 190, bottom: 40, left: 70 };
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
@@ -198,32 +198,32 @@
         .attr("stroke-width", .5)
         
     chart.append("text")
-        .attr("x", (width / 3) - 150)
+        .attr("x", (width / 3) - 190)
         .attr("y", height / 3 + 50)
         .attr("class", "textbox")
         .text("Schizo Disorders (%)")
 
     chart.append("text")
-        .attr("x", (width / 3) + 100)
+        .attr("x", (width / 3) + 150)
         .attr("y", height / 3 + 50)
         .attr("class", "textbox")
         .text("Bipolar Disorders (%)")
 
     chart.append("text")
-        .attr("x", (width / 3 * 2) + 160)
+        .attr("x", (width / 3 * 2) + 190)
         .attr("y", height / 3 + 50)
         .attr("class", "textbox")
         .text("Depression Disorders (%)")
 
     chart.append("text")
-        .attr("x", (width / 3) / 2- + 50)
-        .attr("y", height / 3 * 2 + 140)
+        .attr("x", (width / 3) / 2- + 70)
+        .attr("y", height / 3 * 2 + 145)
         .attr("class", "textbox")
         .text("Drug Use Disorders (%)")
 
     chart.append("text")
         .attr("x", (width / 3) + 130)
-        .attr("y", height / 3 * 2 + 140)
+        .attr("y", height / 3 * 2 + 144)
         .attr("class", "textbox")
         .text("Anxiety Disorders (%)")
 
