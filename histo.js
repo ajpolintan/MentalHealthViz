@@ -14,7 +14,7 @@
     // Set up the SVG container
     const svgWidth = 1000;
     const svgHeight = 400;
-    const margin = { top: 20, right: 20, bottom: 50, left: 40 };
+    const margin = { top: 20, right: 20, bottom: 50, left: 70 };
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
 

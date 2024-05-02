@@ -97,7 +97,7 @@ const lines = chart.selectAll("yGrid")
 
 // Add X and Y axes
 chart.append("g")
-    .attr("class", "axis axis-x")
+    .attr("class", "axis-x")
     .attr("transform", `translate(0, ${height})`)
     .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")))
     .call((g) => g.select(".tick:last-of-type text").clone()

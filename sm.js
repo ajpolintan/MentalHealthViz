@@ -125,31 +125,25 @@
 
     chart.append("g")
         .attr("class", "axis axis-y")
-        .call(d3.axisLeft(y).ticks(7))
-        .call((g) => g.select(".tick:last-of-type text").clone()
-            .attr("x", -5)
-            .attr("y", -20)
-            .attr("text-anchor", "start")
-            .attr("font-weight", "bold")
-            .text("Value (Open)"))
+        .call(d3.axisLeft(y).ticks(5))
     
     chart.append("g")
         .attr("class", "axis axis-y")
-        .call(d3.axisLeft(y2).ticks(7))
+        .call(d3.axisLeft(y2).ticks(5))
         .attr("transform", `translate(${width / 3 + padding}, 0)`)
     
     chart.append("g")
         .attr("class", "axis axis-y")
-        .call(d3.axisLeft(y3).ticks(7))
+        .call(d3.axisLeft(y3).ticks(5))
       
     chart.append("g")
         .attr("class", "axis axis-y")
-        .call(d3.axisLeft(y4).ticks(7))
+        .call(d3.axisLeft(y4).ticks(5))
         .attr("transform", `translate(${width / 3 + padding}, 0)`)
         
     chart.append("g")
         .attr("class", "axis axis-y")
-        .call(d3.axisLeft(y5).ticks(7))
+        .call(d3.axisLeft(y5).ticks(5))
         .attr("transform", `translate(${width / 3 * 2 + padding + 60}, 0)`)
      
     chart.selectAll("yGrid") 
