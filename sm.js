@@ -26,7 +26,7 @@
         .attr("width", svgWidth)
         .attr("height", svgHeight);
 
-
+    var formatDecimal = d3.format(".2f");
     
     var tooltip = d3.select("#sm-container")
         .attr("class", "tooltip")
@@ -366,7 +366,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p> Schizophrenia Rate: " + d.schizo)
+                        .html("<p> Schizophrenia Rate: " + formatDecimal(d.schizo))
     }
 
     function b_hover(event, d) {
@@ -375,7 +375,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p> Bipolar Rate: " + d.bipolar)
+                        .html("<p> Bipolar Rate: " + formalDecimal(d.bipolar))
     }
     
     
@@ -385,7 +385,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p> Bipolar Rate: " + d.bipolar)
+                        .html("<p> Bipolar Rate: " + formatDecimal(d.bipolar))
     }
 
     function dr_hover(event, d) {
@@ -394,7 +394,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p> Drug Disorder Rate: " + d.drug)
+                        .html("<p> Drug Disorder Rate: " + formatDecimal(d.drug))
     }
 
     function a_hover(event, d) {
@@ -403,7 +403,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p> Anxiety Rate: " + d.anxiety)
+                        .html("<p> Anxiety Rate: " + formatDecimal(d.anxiety))
     }
 
     function d_hover(event, d) {
@@ -412,7 +412,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p> Depression Rate: " + d.depression)
+                        .html("<p> Depression Rate: " + formatDecimal(d.depression))
     }
 
     function exit() {

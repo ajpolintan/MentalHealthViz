@@ -25,6 +25,7 @@ const width = svgWidth - margin.left - margin.right;
 const height = svgHeight - margin.top - margin.bottom;
 
 var groups = ["count","crude_deathrate","agestd_rate"]
+var formatDecimal = d3.format(".2f");
 
 d3.select("#selectButton")
     .selectAll('myOptions')
@@ -199,7 +200,7 @@ var circles = chart.selectAll("circle")
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p>Rate: " + d.rate  + "<br>Year: " + d.year + "</p>" )
+                        .html("<p>Rate: " + formatDecimal(d.rate)  + "<br>Year: " + d.year + "</p>" )
                    
                     d3.select(this)
                         .attr("r",4.5)
@@ -307,7 +308,7 @@ var circles = chart.selectAll("circle")
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p>Rate: " + d.age_rate  + "<br>Year: " + d.year + "</p>" )
+                        .html("<p>Rate: " + formatDecimal(d.age_rate)  + "<br>Year: " + d.year + "</p>" )
                    
                     d3.select(this)
                         .attr("r",4.5)

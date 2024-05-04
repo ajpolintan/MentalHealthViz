@@ -31,6 +31,10 @@
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
 
+
+    var formatDecimal = d3.format(".2f");
+    var formatBig = d3.format(".2s");
+
     const svg = d3.select("#scat-container")
         .append("svg")
         .attr("width", svgWidth)
@@ -99,7 +103,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p>Country: " + d.country  + "<br>Employment Popuation Ratio: " + d.employment + "</p>" )
+                        .html("<p>Country: " + d.country  + "<br>Employment Popuation Ratio: " + formatDecimal(d.employment) + "</p>" )
 
                         console.log(d)
                         d3.select(this)
@@ -177,7 +181,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p>Country: " + d.country  + "<br>Employment Popuation Ratio: " + d.employment + "</p>" )
+                        .html("<p>Country: " + d.country  + "<br>Employment Popuation Ratio: " + formatDecimal(d.employment) + "</p>" )
                        
                 d3.select(this)
                     .attr("r",4.5)
@@ -197,6 +201,7 @@
                 .transition()
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8)) 
+              
             
             lines.join("line")
                 .data(y.ticks().slice())
@@ -221,7 +226,7 @@
                 .style("visibility", "visible")
                 .style("left", (event.pageX) +"px")
                 .style("top",  (event.pageY) + "px")
-                .html("<p> Country: " + d.country  + "<br>Inflation Rate: " + d.inflation + "</p>" )
+                .html("<p> Country: " + d.country  + "<br>Inflation Rate: " + formatDecimal(d.inflation) + "</p>" )
                 console.log(d)
                 d3.select(this)
                 .attr("r",4.5)
@@ -269,7 +274,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p>Country: " + d.country  + "<br>GDP: " + d.gdp + "</p>" )
+                        .html("<p>Country: " + d.country  + "<br>GDP: " + formatBig(d.gdp) + "</p>" )
                        
                     d3.select(this)
                         .attr("r",4.5)
@@ -302,7 +307,7 @@
                 .transition()
                 .duration(3000)
                 .attr("cx", function(d) { return x(d.deathrate) })
-                .attr("cy",  function(d) { return y(d.population) })
+                .attr("cy",  function(d) { return y(d.population)})
                 .attr("r", 4)
 
                 circles.on("mouseover", function(event, d) {
@@ -311,7 +316,7 @@
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
                         .style("top",  (event.pageY) + "px")
-                        .html("<p>Country: " + d.country  + "<br>GDP: " + d.population + "</p>" )
+                        .html("<p>Country: " + d.country  + "<br>GDP: " + formatBig(d.population) + "</p>" )
                        
                     d3.select(this)
                         .attr("r",4.5)

@@ -81,6 +81,7 @@
         .sliderBottom()
         .min(d3.min(data, d => d.year))
         .max(d3.max(data, d => d.year))
+        .step(1)
         .width(500)
         .ticks(8)
         .tickFormat(d3.format('.0f'))
@@ -90,11 +91,15 @@
 
     const groupSlider = d3
         .select('#slider-range')
+        .append('text')
         .append('svg')
-        .attr('width', 700)
+        .attr('width', 630)
         .attr('height', 100)
         .append('g')
         .attr('transform', 'translate(90,30)')
+
+    d3.selectAll('.tick')
+        .classed('custom-tick', true);
 
     groupSlider.call(sliderRange)
 
@@ -120,7 +125,7 @@
             .attr("text-anchor", "start")
             .attr("font-weight", "bold")
             .text("Suicide Count")
-            )
+        )
 
     
     var bar = chart.selectAll(".bar")
@@ -138,7 +143,7 @@
 
             tooltip.style("opacity",1)
                 .style("visibility", "visible")
-                .style("left", (event.pageX) +"px")
+                .style("left", (event.pageX) + "px")
                 .style("top",  (event.pageY) + "px")
                 .html("<p> Count: " + d.count  + "<br>Year: " + d.year + "</p>" )
                

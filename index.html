@@ -29,6 +29,14 @@
             font-style: bold;
             text-align: center;
         }
+        
+        .title {
+            font-size: 45px;
+        }
+
+        .about {
+            font-size:20px
+        }
 
         h2 {
             color: "black";
@@ -79,6 +87,14 @@
                 font-family: "Alegreya Sans", sans-serif;
                 color: white;
                 font-size: 30px;
+        }
+
+        .footer {
+            padding: 40px;
+            background: #1abc9c;
+            font-family: "Alegreya Sans", sans-serif;
+            color: white;
+            font-size: 30px;
         }
 
         .tooltip {
@@ -136,6 +152,12 @@
             text-align: center;
         }
        
+        .slider-range text {
+            font-size: 11.5px;
+        }
+
+     
+       
     </style>
 </head>
 
@@ -144,20 +166,16 @@
     <div class ="header"> 
         <h1> Statistics for Suicide for Men in the United States </h1> 
         <h4>by Allen Jake Polintan</h4>
-
+        <p class="about"> ABOUT <br> <br> Mental Visualization Project focusing on the user
+            to learn about current suicide statistics for men in the United States, <br>
+            mental factors correlations that may contribute to mental issues,
+            and to give users resources <br> to find Mental Resources such as their nearest crisis center / various mental health organizations.
+           
+        </p>
     </div>
 
 
-    <p> Mental Visualization Project focusing on the user
-        to learn about current suicide statistics for men in the United States, <br>
-        mental factors correlations that may contribute to mental issues,
-        and to give users resources <br> to find Mental Resources such as their nearest crisis center / various mental health organizations.
-        <br> <br> This website will feature interactable line charts of suicide rates in the US, interactable histograms of age ranges for suicide count to see <br> who is most affected,
-        scatterplots and small multiple line charts to show potential factors for these suicide statistics,<br> and a map of locations with crisis city centers across the United States.
-    </p>
-   
-
-    <h1> The Suicide Rate and Count for Men has been Increasing</h1>
+    <h1 class="title"> The Suicide Rate and Count for Men has been Increasing</h1>
     <p> Select to change y-axis for the chart. <br> 
         <br> <b>count </b>: The count of suicides
         <br> <b>crude_deathrate </b>: The raw number of suicides per 100,000 people
@@ -174,7 +192,7 @@
     </div>
     <script src="line.js"></script>
 
-    <h1> The Age Ranges That Are Most Affected By Suicide</h1>
+    <h1 class="title"> The Age Ranges That Are Most Affected By Suicide</h1>
     <p> Use the slider to view how suicide count is changing for different age ranges, year by year</p>
 
     <p> <b> Takeaway: </b> The most affected age range in 2021 were adults between 25-34 years
@@ -190,7 +208,7 @@
             sourced from: World Health Organization and World Bank Open Data</p>
     </div>
 
-    <h1> Drug Use Disorders Has Been on the Rise</h1>
+    <h1 class="title"> Drug Use Disorders Has Been on the Rise</h1>
     <p> Each disorder represents the percentage of people with that disorder in the US within that year</p>
     <p> <b> Takeaway: </b> One key disorder that is increasing is Drug Use in the United States. Drug Use may be correlated with this rise of suicides </p>
 
@@ -202,7 +220,7 @@
             sourced from: Our World In Data</p>
     </div>
 
-    <h1> Employment Rate Affects Suicide Rates</h1>
+    <h1 class="title"> Employment Rate Affects Suicide Rates</h1>
     <p> Select to change y-axis for the chart. US has a black stroked line around its circle<br> 
         <br> <b>employment </b>: Employment Population Ratio
         <br> <b>inflation </b>: Inflation rate
@@ -223,7 +241,7 @@
     </div>
 
 
-    <h1> Map of Suicide / Mental Health Crisis Centers in the U.S </h1>
+    <h1 class="title"> Map of Suicide / Mental Health Crisis Centers in the U.S </h1>
     <p class="tooltip"> If you are in need of help, find your nearest Mental Health Crisis Center in the map below <br>
         Click on any of the circle's to visit each Crisis Center's website</p>
     <div id="map-container"></div>
@@ -234,6 +252,16 @@
 
     <p> Referenced  https://d3-graph-gallery.com/graph/interactivity_button.html to learn how to create buttons and interactions</p>
     <p> Referenced: https://www.youtube.com/watch?v=Fb-7Flq7lwU to create slider </p>
+
+    <div class="footer"> 
+        <h1>Methodology</h1> 
+        <p> Referenced  https://d3-graph-gallery.com/graph/interactivity_button.html to learn how to create buttons and interactions <br> <br>
+        Referenced: https://www.youtube.com/watch?v=Fb-7Flq7lwU to create slider <br> <br>
+        Used: https://www.freemaptools.com/convert-us-zip-code-to-lat-lng.htm to convert zip code to longitude latitude
+
+
+        </p>
+    </div>
 </body>
 
 </html>
