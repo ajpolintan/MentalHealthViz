@@ -15,7 +15,7 @@
     // Set up the SVG container
     const svgWidth = 1000;
     const svgHeight = 700;
-    const margin = { top: 40, right: 190, bottom: 40, left: 70 };
+    const margin = { top: 40, right: 190, bottom: 20, left: 70 };
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
 
@@ -348,7 +348,7 @@
           
     chart.append("g")
         .attr("class", "legendLinear")
-        .attr("transform", `translate( ${width + 30}, ${height / 3 + 100})`)
+        .attr("transform", `translate( ${width - 55}, ${height / 3 + 120})`)
 
     var legendLinear = d3.legendColor()
         .shapeWidth(20)

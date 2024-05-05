@@ -18,8 +18,8 @@ d3.csv("csv/suicide_range.csv", function(d) {
 
   console.log(male[1])
 // Set up the SVG container
-const svgWidth = 800;
-const svgHeight = 300;
+const svgWidth = 950;
+const svgHeight = 400;
 const margin = { top: 20, right: 90, bottom: 40, left: 65 };
 const width = svgWidth - margin.left - margin.right;
 const height = svgHeight - margin.top - margin.bottom;
@@ -100,7 +100,7 @@ const lines = chart.selectAll("yGrid")
 chart.append("g")
     .attr("class", "axis-x")
     .attr("transform", `translate(0, ${height})`)
-    .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")))
+    .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")).tickSize(10))
     .call((g) => g.select(".tick:last-of-type text").clone()
         .attr("x", 0)
         .attr("y", 25)
@@ -166,7 +166,7 @@ var circles = chart.selectAll("circle")
             chart.selectAll(".axis-y")
                 .transition()
                 .duration(3000)
-                .call(d3.axisLeft(y).ticks(8))
+                .call(d3.axisLeft(y).ticks(6))
             
             lines.join("line")
                 .data(y.ticks().slice(3))
@@ -217,7 +217,7 @@ var circles = chart.selectAll("circle")
             chart.selectAll(".axis-y")
                 .transition()
                 .duration(3000)
-                .call(d3.axisLeft(y).ticks(8)) 
+                .call(d3.axisLeft(y).ticks(6)) 
 
             lines.join("line")
                 .data(y.ticks().slice())
@@ -274,7 +274,7 @@ var circles = chart.selectAll("circle")
             chart.selectAll(".axis-y")
                 .transition()
                 .duration(3000)
-                .call(d3.axisLeft(y).ticks(8))
+                .call(d3.axisLeft(y).ticks(6))
                 
             lines.join("line")
                 .data(y.ticks().slice(3))

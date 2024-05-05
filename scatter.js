@@ -290,7 +290,7 @@
             chart.selectAll(".axis-y")
                 .transition()
                 .duration(3000)
-                .call(d3.axisLeft(y).ticks(8))
+                .call(d3.axisLeft(y).ticks(8).tickFormat(d3.format(".2s")))
                     
             lines.join("line")
                 .data(y.ticks())
