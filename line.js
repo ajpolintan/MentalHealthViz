@@ -146,12 +146,13 @@ var circles = chart.selectAll("circle")
                     
                     console.log(d)
                    
-                    d3.select(this).attr("r",4.5)
+                    d3.select(this).attr("r",4.5).style("stroke","black")
+
                     //filter
                     chart.selectAll("circle").style("fill", "#9ecae1")
                     d3.select(this).style("fill","#40E0D0")
                 }) .on("mouseout", function(d) {
-                    d3.select(this).attr("r",3.5)
+                    d3.select(this).attr("r",3.5).style("stroke","none")
                     tooltip.style("visibility", "hidden")
                     .style("stroke","none")
                     //filter
@@ -204,6 +205,7 @@ var circles = chart.selectAll("circle")
                    
                     d3.select(this)
                         .attr("r",4.5)
+                        .style("stroke","black")
 
                         chart.selectAll("circle").style("fill", "#9ecae1")
                         d3.select(this).style("fill","#40E0D0")
@@ -254,11 +256,13 @@ var circles = chart.selectAll("circle")
                     console.log(d)
                     d3.select(this)
                     .attr("r",4.5)
+                    .style("stroke","black")
                     //filter
                     chart.selectAll("circle").style("fill", "#9ecae1")
                     d3.select(this).style("fill","#40E0D0")
                 }) .on("mouseout", function(d) {
-                    d3.select(this).attr("r",3.5)
+                    d3.select(this).attr("r",3.5).style("stroke","none")
+
                     tooltip.style("visibility", "hidden")
                     .style("stroke","none")
                     //filter
@@ -312,6 +316,8 @@ var circles = chart.selectAll("circle")
                    
                     d3.select(this)
                         .attr("r",4.5)
+                        .style("stroke","black")
+
 
                     chart.selectAll("circle").style("fill", "#9ecae1")
                         d3.select(this).style("fill","#40E0D0")
