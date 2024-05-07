@@ -30,8 +30,24 @@
     const margin = { top: 20, right: 50, bottom: 40, left: 75 };
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
+   
+    const annotations = [
+        {
+            note: { 
+                label: "November 2011",
+                title: "Unemployment Rate: 8.6"
+            },
+            x: 245,
+            y: 700,
+            dy: 100,
+            dx: 167,
+            type: d3.annotationCalloutCircle,
+        },
+        ];
 
+    const makeAnnotations = d3.annotation().annotations(annotations);
 
+    
     var formatDecimal = d3.format(".2f");
     var formatBig = d3.format(".2s");
 

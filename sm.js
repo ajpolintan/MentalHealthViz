@@ -120,7 +120,7 @@
     chart.append("g")
         .attr("class", "axis axis-x")
         .attr("transform", `translate(0, ${height / 3})`)
-        .call(d3.axisBottom(x3).tickPadding(10).ticks(5))
+        .call(d3.axisBottom(x3).tickPadding(10).ticks(4))
        
 
     chart.append("g")
