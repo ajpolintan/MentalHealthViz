@@ -103,6 +103,17 @@ const text = chart.append("text")
         .attr("font-weight", "bold")
         .text("Male Suicide Count")
 
+
+const annotation = chart.append("text")
+    .attr("x", 10)
+    .attr("y", 110)
+    .text("24769");
+
+const annotation2 = chart.append("text")
+    .attr("x", 740)
+    .attr("y", 0)
+    .text("38358");
+
 // Add X and Y axes
 chart.append("g")
     .attr("class", "axis-x")
@@ -167,6 +178,19 @@ var circles = chart.selectAll("circle")
         if (selectedOption == "crude_deathrate") {
             y.domain([0,d3.max(data, d => d.rate)])
             
+
+            annotation.transition()
+                .duration(3000)
+                .attr("x", 10)
+                .attr("y", 36)
+                .text("20.14");
+
+            annotation2.transition()
+                .duration(3000)
+                .attr("x", 740)
+                .attr("y", -8)
+                .text("23.29");
+
             chart.selectAll(".axis-y")
                 .transition()
                 .duration(3000)
@@ -228,6 +252,18 @@ var circles = chart.selectAll("circle")
             console.log("AMONG US")
             y.domain([0,d3.max(data, d => d.count)])
             
+            annotation.transition()
+                .duration(3000)
+                .attr("x", 10)
+                .attr("y", 110)
+                .text("24769");
+
+            annotation2.transition()
+                .duration(3000)
+                .attr("x", 740)
+                .attr("y", -10)
+                .text("38358");
+
             chart.selectAll(".axis-y")
                 .transition()
                 .duration(3000)
@@ -302,7 +338,18 @@ var circles = chart.selectAll("circle")
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(6))
                 
-                 
+            annotation.transition()
+                .duration(3000)
+                .attr("x", 10)
+                .attr("y", 22)
+                .text("18.96");
+
+            annotation2.transition()
+                .duration(3000)
+                .attr("x", 740)
+                .attr("y", -10)
+                .text("20.90");
+
             text.attr("text-anchor", "end")
                 .transition()
                 .duration(3000)    
@@ -311,7 +358,7 @@ var circles = chart.selectAll("circle")
                 .attr("x", -margin.top + 10)
                 .attr("font-weight", "bold")
                 .text("Age Standardized Death Rate")    
-                
+
             lines.join("line")
                 .data(y.ticks().slice(3))
                 .transition()

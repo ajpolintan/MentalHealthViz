@@ -45,7 +45,25 @@
     
     const chart = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
+        
 
+    const text = chart.append("text")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -50)
+        .attr("x", -margin.top + 30)
+        .attr("font-weight", "bold")
+        .text("Percentage of Disorder in US")
+
+    const annotation = chart.append("text")
+        .attr("x", 210)
+        .attr("y", 300)
+        .text("3.45%");
+
+    const annotation2 = chart.append("text")
+        .attr("x", 10)
+        .attr("y", 400)
+        .text("2.34%");
         
     const x = d3.scaleTime()
         .domain(d3.extent(data, function(d) { return d.date}))

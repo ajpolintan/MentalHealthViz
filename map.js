@@ -31,10 +31,15 @@
             .attr("width", svgWidth)
             .attr("height", svgHeight);
 
+            
         //Creating the Chart    
         const chart = svg.append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
-    
+        
+        const annotation = chart.append("text")
+            .attr("x", -20)
+            .attr("y", 280)
+            .text("Click Me! -->");
     
         d3.csv("csv/crisis_center.csv", function(d) {
             return {

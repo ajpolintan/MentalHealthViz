@@ -76,6 +76,7 @@
         .attr("stroke", "#e0e0e0")
         .attr("stroke-width", .5)
 
+   
     //SLIDER
     const sliderRange = d3
         .sliderBottom()
@@ -121,9 +122,11 @@
         .attr("class", "axis axis-y")
         .call(d3.axisLeft(y).ticks(5))
         .call((g) => g.select(".tick:last-of-type text").clone()
-            .attr("x", 10)
+            .attr("x", -100)
+            .attr("y", -60)
             .attr("text-anchor", "start")
             .attr("font-weight", "bold")
+            .attr("transform", "rotate(-90)")
             .text("Suicide Count")
         )
 
