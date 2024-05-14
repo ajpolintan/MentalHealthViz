@@ -143,8 +143,8 @@
 
             tooltip.style("opacity",1)
                 .style("visibility", "visible")
-                .style("left", (event.pageX) + "px")
-                .style("top",  (event.pageY) + "px")
+                .style("left", (event.pageX + 45) + "px")
+                .style("top",  (event.pageY - 100) + "px")
                 .html("<p> Count: " + d.count  + "<br>Year: " + d.year + "</p>" )
                
             chart.selectAll(".bar").style("fill", "#9ecae1")
