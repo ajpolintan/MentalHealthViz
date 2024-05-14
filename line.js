@@ -11,12 +11,11 @@ d3.csv("csv/suicide_range.csv", function(d) {
 
     };
 }).then(function(data) {
-  console.log(data[0])
-  const sex = d3.group(data, d => d.sex)
-  const male = sex.get("Male")
-  const female = sex.get("Female")
+//Group data based of sex
+const sex = d3.group(data, d => d.sex)
+const male = sex.get("Male")
+const female = sex.get("Female")
 
-  console.log(male[1])
 // Set up the SVG container
 const svgWidth = 950;
 const svgHeight = 400;
@@ -24,9 +23,12 @@ const margin = { top: 20, right: 90, bottom: 40, left: 90 };
 const width = svgWidth - margin.left - margin.right;
 const height = svgHeight - margin.top - margin.bottom;
 
+//Create groups for button
 var groups = ["count","crude_deathrate","agestd_rate"]
+//Decimal Formatting
 var formatDecimal = d3.format(".2f");
 
+//Create button with group values
 d3.select("#selectButton")
     .selectAll('myOptions')
     .data(groups)
@@ -35,7 +37,7 @@ d3.select("#selectButton")
     .text(d => d)
     .attr("value", d => d)
 
-
+//Create tooltip: Referenced from D3-Graph Gallery
 var tooltip = d3.select("#line-container")
     .attr("class", "tooltip")
     .append("div")
@@ -49,7 +51,8 @@ var tooltip = d3.select("#line-container")
     .style("padding", "10px")
     .html("<p>I'm a tooltip written in HTML</p><img src='https://github.com/holtzy/D3-graph-gallery/blob/master/img/section/ArcSmal.png?raw=true'></img><br>Fancy<br><span style='font-size: 40px;'>Isn't it?</span>");
 
-    const annotations = [
+//Annotation (For some reason, code breaks if I try to remove this)
+const annotations = [
 {
     note: { 
         label: "November 2011",
@@ -65,6 +68,7 @@ var tooltip = d3.select("#line-container")
 
 const makeAnnotations = d3.annotation().annotations(annotations);
 
+//Create chart
 const svg = d3.select("#line-container")
     .append("svg")
     .attr("width", svgWidth)
@@ -73,7 +77,7 @@ const svg = d3.select("#line-container")
 const chart = svg.append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
-
+//Create x and y scales
 const x = d3.scaleTime()
     .domain(d3.extent(data, function(d) { return d.date}))
     .nice()
@@ -84,7 +88,7 @@ const y = d3.scaleLinear()
     .nice()
     .range([height, 0])
 
-//Gridlines
+//Create gridlines
 const lines = chart.selectAll("yGrid") 
     .data(y.ticks(8))
     .join("line")
@@ -95,6 +99,7 @@ const lines = chart.selectAll("yGrid")
     .attr("stroke", "#e0e0e0")
     .attr("stroke-width", .5)
 
+//Create y-axis title
 const text = chart.append("text")
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
@@ -103,7 +108,7 @@ const text = chart.append("text")
         .attr("font-weight", "bold")
         .text("Male Suicide Count")
 
-
+//Create annotations
 const annotation = chart.append("text")
     .attr("x", 10)
     .attr("y", 110)
@@ -131,7 +136,7 @@ chart.append("g")
     .attr("class", "axis-y")
     .call(d3.axisLeft(y).ticks(5))
    
-
+//Create line for line chart
 var paths = chart.append("path")
     .datum(male)
     .attr("fill", "none")
@@ -142,6 +147,7 @@ var paths = chart.append("path")
         .y(function(d) { return y(d.count) })
     )
 
+    //Add circles for each chart 
 var circles = chart.selectAll("circle")
     .data(male)
     .enter()
@@ -151,34 +157,35 @@ var circles = chart.selectAll("circle")
     .attr("r", 4)
     .style("fill", "#40E0D0")
     .on("mouseover", function(event, d) {
-                    console.log(event.pageX)
-                    tooltip.style("opacity",1)
-                        .style("visibility", "visible")
-                        .style("left", (event.pageX) +"px")
-                        .style("top",  (event.pageY) + "px")
-                        .html("<p> Count: " + d.count  + "<br>Year: " + d.year + "</p>" )
-                    
-                    console.log(d)
-                   
-                    d3.select(this).attr("r",4.5).style("stroke","black")
+        //Create tooltip
+        tooltip.style("opacity",1)
+            .style("visibility", "visible")
+            .style("left", (event.pageX) +"px")
+            .style("top",  (event.pageY) + "px")
+            .html("<p> Count: " + d.count  + "<br>Year: " + d.year + "</p>" )
+                        
+        //Create black stroke
+        d3.select(this).attr("r",4.5).style("stroke","black")
 
-                    //filter
-                    chart.selectAll("circle").style("fill", "#003f5c")
-                    d3.select(this).style("fill","#40E0D0")
-                }) .on("mouseout", function(d) {
-                    d3.select(this).attr("r",3.5).style("stroke","none")
-                    tooltip.style("visibility", "hidden")
-                    .style("stroke","none")
-                    //filter
-                    chart.selectAll("circle").style("fill", "#40E0D0")
+        //Brush all other data
+        chart.selectAll("circle").style("fill", "#003f5c")
+        d3.select(this).style("fill","#40E0D0")
+    }).on("mouseout", function(d) {
+        //Remove stroke line
+        d3.select(this).attr("r",3.5).style("stroke","none")
+        //Hide Tooltip
+        tooltip.style("visibility", "hidden")
+        .style("stroke","none")
+        //Return to normal
+        chart.selectAll("circle").style("fill", "#40E0D0")
     })           
 
-
+    //Code for button selection
     function update(selectedOption) {
         if (selectedOption == "crude_deathrate") {
+            //Switch y scale, annotations, text, circles and lines
             y.domain([0,d3.max(data, d => d.rate)])
             
-
             annotation.transition()
                 .duration(3000)
                 .attr("x", 10)
@@ -232,24 +239,22 @@ var circles = chart.selectAll("circle")
                 .attr("r", 4)  
                 
             circles.on("mouseover", function(event, d) {
-                    console.log("THIS HAS CHANGED")
-                    tooltip.style("opacity",1)
-                        .style("visibility", "visible")
-                        .style("left", (event.pageX) +"px")
-                        .style("top",  (event.pageY) + "px")
-                        .html("<p>Rate: " + formatDecimal(d.rate)  + "<br>Year: " + d.year + "</p>" )
+                tooltip.style("opacity",1)
+                    .style("visibility", "visible")
+                    .style("left", (event.pageX) +"px")
+                    .style("top",  (event.pageY) + "px")
+                    .html("<p>Rate: " + formatDecimal(d.rate)  + "<br>Year: " + d.year + "</p>" )
                    
-                    d3.select(this)
-                        .attr("r",4.5)
-                        .style("stroke","black")
-
-                        chart.selectAll("circle").style("fill", "#003f5c")
-                        d3.select(this).style("fill","#40E0D0")
+                d3.select(this)
+                    .attr("r",4.5)
+                    .style("stroke","black")
+                chart.selectAll("circle").style("fill", "#003f5c")
+                    d3.select(this).style("fill","#40E0D0")
             })  
         }
 
         if (selectedOption == "count") {
-            console.log("AMONG US")
+            //Switch y scale, annotations, text, circles and lines
             y.domain([0,d3.max(data, d => d.count)])
             
             annotation.transition()
@@ -306,31 +311,30 @@ var circles = chart.selectAll("circle")
                 .attr("r", 4) 
 
             circles.on("mouseover", function(event, d) {
-                    tooltip.style("opacity",1)
+                tooltip.style("opacity",1)
                     .style("visibility", "visible")
                     .style("left", (event.pageX) +"px")
                     .style("top",  (event.pageY) + "px")
                     .html("<p> Count: " + d.count  + "<br>Year: " + d.year + "</p>" )
-                    console.log(d)
-                    d3.select(this)
+                
+                d3.select(this)
                     .attr("r",4.5)
                     .style("stroke","black")
-                    //filter
                     chart.selectAll("circle").style("fill", "#003f5c")
-                    d3.select(this).style("fill","#40E0D0")
-                }) .on("mouseout", function(d) {
-                    d3.select(this).attr("r",3.5).style("stroke","none")
+                
+                d3.select(this).style("fill","#40E0D0")
+            }).on("mouseout", function(d) {
+                d3.select(this).attr("r",3.5).style("stroke","none")
 
-                    tooltip.style("visibility", "hidden")
+                tooltip.style("visibility", "hidden")
                     .style("stroke","none")
-                    //filter
-                    chart.selectAll("circle").style("fill", "#40E0D0")
-                })      
+                chart.selectAll("circle").style("fill", "#40E0D0")
+            })      
                      
         }
 
         if (selectedOption == "agestd_rate") {
-            console.log("AMONG US")
+            //Switch y scale, annotations, text, circles and lines
             y.domain([0,d3.max(data, d => d.age_rate)])
             
             chart.selectAll(".axis-y")
@@ -385,35 +389,29 @@ var circles = chart.selectAll("circle")
                 .attr("cy",  function(d) { return y(d.age_rate) })
                 .attr("r", 4)
 
-                circles.on("mouseover", function(event, d) {
-                    console.log("THIS HAS CHANGED")
-                    tooltip.style("opacity",1)
-                        .style("visibility", "visible")
-                        .style("left", (event.pageX) +"px")
-                        .style("top",  (event.pageY) + "px")
-                        .html("<p>Rate: " + formatDecimal(d.age_rate)  + "<br>Year: " + d.year + "</p>" )
+            circles.on("mouseover", function(event, d) {
+                tooltip.style("opacity",1)
+                    .style("visibility", "visible")
+                    .style("left", (event.pageX) +"px")
+                    .style("top",  (event.pageY) + "px")
+                    .html("<p>Rate: " + formatDecimal(d.age_rate)  + "<br>Year: " + d.year + "</p>" )
                    
-                    d3.select(this)
-                        .attr("r",4.5)
-                        .style("stroke","black")
+            d3.select(this)
+                .attr("r",4.5)
+                .style("stroke","black")
 
-
-                    chart.selectAll("circle").style("fill", "#003f5c")
-                        d3.select(this).style("fill","#40E0D0")
+            chart.selectAll("circle").style("fill", "#003f5c")
+                d3.select(this).style("fill","#40E0D0")
             })
         }
     }
 
-
+    //Function that will change data based off the button
     d3.select("#selectButton").on("change", function(d) {
         // recover the option that has been chosen
         var selectedOption = d3.select(this).property("value")
-        console.log(selectedOption)
+
         // run the updateChart function with this selected option
         update(selectedOption)
     });
-
-
-  
-
 })

@@ -1,16 +1,14 @@
-     // Sample array data
-     d3.csv("csv/suicide_rates.csv", function(d) { 
-        return {
-          generation: d.Generation, 
-          count: +d.SuicideCount, 
-          age: d.AgeGroup, 
-          year: d.Year,
-          country: d.CountryName,
-          sex: d.Sex, 
-        };
-    }).then(function(data) {
-       console.log(data[0]);
-  
+// Sample array data
+d3.csv("csv/suicide_rates.csv", function(d) { 
+    return {
+        generation: d.Generation, 
+        count: +d.SuicideCount, 
+        age: d.AgeGroup, 
+        year: d.Year,
+        country: d.CountryName,
+        sex: d.Sex, 
+    };
+}).then(function(data) {  
     // Set up the SVG container
     const svgWidth = 1000;
     const svgHeight = 400;
@@ -18,6 +16,7 @@
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
 
+    //Create the Chart
     const svg = d3.select("#histo-container")
         .append("svg")
         .attr("width", svgWidth)
@@ -26,15 +25,16 @@
     const chart = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // Convert string values to numbers
+    //Group data based off gender
     const gender = d3.group(data, d => d.sex)
     const male = gender.get("Male")
     const female = gender.get("Female")
 
+    //Get the first year and group data based off year
     const theYear = d3.group(data, d => d.year)
     const beginYear = theYear.get("2011")
-    console.log(beginYear)
 
+    //Create tooltips
     var tooltip = d3.select("#line-container")
         .attr("class", "tooltip")
         .append("div")
@@ -48,13 +48,10 @@
         .style("padding", "10px")
         .html("<p>I'm a tooltip written in HTML</p><img src='https://github.com/holtzy/D3-graph-gallery/blob/master/img/section/ArcSmal.png?raw=true'></img><br>Fancy<br><span style='font-size: 40px;'>Isn't it?</span>");
     //referenced https://d3-graph-gallery.com/graph/density_filter.html
+    //Map years into a new set. Referenced from website above ^
     let years = Array.from(new Set(data.map(d => d.year)))
-    console.log(years[0])
-//    console.log(years.get("2021"))
-
-    console.log(male[0])
+ 
     // Define X and Y scales
-
     const x = d3.scaleBand()
         .domain(data.map(d => d.age))
         .range([0, width])
@@ -66,6 +63,7 @@
         .nice()
         .range([height, 0]);
 
+    //Create gridlines
     const lines = chart.selectAll("yGrid") 
         .data(y.ticks().slice(1))
         .join("line")
@@ -77,7 +75,7 @@
         .attr("stroke-width", .5)
 
    
-    //SLIDER
+    //Create the slider
     const sliderRange = d3
         .sliderBottom()
         .min(d3.min(data, d => d.year))
@@ -89,7 +87,7 @@
         .default(d3.min(data, d => d.year), d3.max(data, d => d.year))
         .fill('#008080')
 
-
+    //Append the slider
     const groupSlider = d3
         .select('#slider-range')
         .append('text')
@@ -99,9 +97,11 @@
         .append('g')
         .attr('transform', 'translate(90,30)')
 
+    //Create a custom tick
     d3.selectAll('.tick')
         .classed('custom-tick', true);
 
+    //Call the slider into the chart
     groupSlider.call(sliderRange)
 
 
@@ -130,7 +130,7 @@
             .text("Suicide Count")
         )
 
-    
+    //Create the histogram/bar chart
     var bar = chart.selectAll(".bar")
         .data(beginYear)
         .enter()
@@ -142,24 +142,29 @@
         .attr("width", x.bandwidth())
         .attr("height", d => height - y(d.count))
         .on("mouseover", function(event, d) {
-            console.log("HEYYY")
-
+            //Create tooltip
             tooltip.style("opacity",1)
                 .style("visibility", "visible")
                 .style("left", (event.pageX + 45) + "px")
                 .style("top",  (event.pageY - 100) + "px")
                 .html("<p> Count: " + d.count  + "<br>Year: " + d.year + "</p>" )
-            chart.selectAll(".bar").style("fill", "#003f5c")
+            
+            //Highlight hover
+            chart.selectAll(".bar")
+                .style("fill", "#003f5c")
+
+            //Brush other data out
             d3.select(this)
                 .style("fill", "#40E0D0")
                 .style("stroke","black")
             })
                 
         .on("mouseout", function(event, d) { 
-
+            //Return to normal values
             tooltip.style("visibility", "hidden")
-                    .style("stroke","none")
-            chart.selectAll(".bar").style("fill", "#40E0D0")
+                .style("stroke","none")
+            chart.selectAll(".bar")
+                .style("fill", "#40E0D0")
 
             d3.select(this)
                 .style("fill", "#40E0D0")
@@ -167,28 +172,23 @@
 
         })
       
-     //we did it :]
 
-
+        //Function use for slider functionality
         sliderRange.on('onchange', value => {
-            console.log(Math.floor(value))
+            //Filter data based off year
             var dataFilter = data.filter(function(d) { return d.year==Math.floor(value) })
-            console.log(data)
+            
+            //Join rectangle and transform histogram/bar chart
             var u = chart.selectAll("rect")
                 .data(dataFilter);
 
-                u.join("rect")
+            u.join("rect")
                 .transition()
                 .duration(500)
                 .attr("x", d => x(d.age))
                 .attr("y", d => y(d.count))
                 .attr("width", x.bandwidth())
                 .attr("height", d => height - y(d.count))
-                .style("fill", "#40E0D0")
-
-        
-        
+                .style("fill", "#40E0D0")   
         })
-        chart.selectAll(".bar").exit().remove();
-
       });

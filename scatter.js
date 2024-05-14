@@ -1,22 +1,21 @@
-    // Sample array data
-    d3.csv("csv/country.csv", function(d) {
-        return {
-            country: d.CountryName,
-            year: d.Year,
-            count: +d.SuicideCount,
-            std_death: +d.StdDeathRate,
-            deathrate: +d.DeathRatePer100K,
-            employment: +d.EmploymentPopulationRatio,
-            inflation: +d.InflationRate,
-            gdp: +d.GDP,
-            population: +d.Population,
+d3.csv("csv/country.csv", function(d) {
+    return {
+        country: d.CountryName,
+        year: d.Year,
+        count: +d.SuicideCount,
+        std_death: +d.StdDeathRate,
+        deathrate: +d.DeathRatePer100K,
+        employment: +d.EmploymentPopulationRatio,
+        inflation: +d.InflationRate,
+        gdp: +d.GDP,
+        population: +d.Population,
           
-        }
-    })
-        .then(function(data) {
-
+    }
+}).then(function(data) {
+    //Groups for buttons
     var groups = ["employment","inflation","gdp", "population"]
 
+    //Create button for scatterplot
     d3.select("#scatButton")
         .selectAll('myOptions')
         .data(groups)
@@ -24,6 +23,7 @@
         .append('option')
         .text(d => d)
         .attr("value", d => d)
+
     // Set up the SVG container
     const svgWidth = 800;
     const svgHeight = 600;
@@ -31,6 +31,7 @@
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
    
+    //Tried to create annotations (code will break if I try to remove)
     const annotations = [
         {
             note: { 
@@ -47,7 +48,7 @@
 
     const makeAnnotations = d3.annotation().annotations(annotations);
 
-    
+    //Decimal formatters
     var formatDecimal = d3.format(".2f");
     var formatBig = d3.format(".2s");
 
@@ -56,10 +57,11 @@
         .attr("width", svgWidth)
         .attr("height", svgHeight);
 
+    //Create Chart
     const chart = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-
+    //Create tooltip. Reference from D3-Graph-Gallery
     var tooltip = d3.select("#scat-container")
         .attr("class", "tooltip")
         .append("div")
@@ -79,11 +81,11 @@
         .domain([0, d3.max(data, d => d.deathrate)])
         .range([0, width]);
   
-    
     const y = d3.scaleLinear()
         .domain([35, d3.max(data, d => d.employment)])
         .range([height, 0]);
     
+    //Create Y-Axis Title
     const text = chart.append("text")
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
@@ -92,6 +94,7 @@
         .attr("font-weight", "bold")
         .text("Employment")
 
+    //Create annotations
     const annotation = chart.append("text")
         .attr("x", 40)
         .attr("y", 25)
@@ -102,7 +105,7 @@
         .attr("y", 260)
         .text("Republic of Korea (60.78)");
 
-
+    //Create gridlines
     const lines = chart.selectAll("yGrid") 
         .data(y.ticks(8))
         .join("line")
@@ -113,7 +116,7 @@
         .attr("stroke", "#e0e0e0")
         .attr("stroke-width", .5)
 
-    // Add bars
+    // Add scatterplot circles
     var circles = chart.selectAll("circle")
         .data(data)
         .enter()
@@ -126,38 +129,37 @@
                 } else {
                     return;
                 }
-            })
+        })
         .attr("r", 3)
         .attr("fill", 
             function(d) { 
                     return "#40E0D0"
             }
-        )
-        .on("mouseover", function(event, d) {
-                        tooltip.style("opacity",1)
-                        .style("visibility", "visible")
-                        .style("left", (event.pageX) +"px")
-                        .style("top",  (event.pageY) + "px")
-                        .html("<p>Country: " + d.country  + "<br>Employment Popuation Ratio: " + formatDecimal(d.employment) + "</p>" )
+        ).on("mouseover", function(event, d) {
+            //Create tooltip
+            tooltip.style("opacity",1)
+                .style("visibility", "visible")
+                .style("left", (event.pageX) +"px")
+                .style("top",  (event.pageY) + "px")
+                .html("<p>Country: " + d.country  + "<br>Employment Popuation Ratio: " + formatDecimal(d.employment) + "</p>" )
 
-                        console.log(d)
-                        d3.select(this)
-                        .attr("r",4.5)
-
+            //Highlight
+            d3.select(this)
+                .attr("r",4.5)            
+            //Brushout data
+            chart.selectAll("circle")
+                .style("fill", "#003f5c")
+            d3.select(this)
+                .style("fill","#40E0D0")
+        }).on("mouseout", function(d) {
+            //return to normal
+            d3.select(this).attr("r",3.5)
+            tooltip.style("visibility", "hidden")
                         
-                        //filter
-                        chart.selectAll("circle").style("fill", "#003f5c")
-                        d3.select(this).style("fill","#40E0D0")
-                    }) .on("mouseout", function(d) {
-                        d3.select(this).attr("r",3.5)
-                        tooltip.style("visibility", "hidden")
-                        //filter
-                        
-                        chart.selectAll("circle").style("fill", "#40E0D0")
-                        if (d.country == "United States of America") {
-
-                            d3.select(this).style("fill", "red")
-                        } 
+            chart.selectAll("circle").style("fill", "#40E0D0")
+                if (d.country == "United States of America") {
+                    d3.select(this).style("fill", "red")
+                } 
         })
 
         
@@ -177,9 +179,11 @@
         .call(d3.axisLeft(y).ticks(10))
         
 
+    //Button Select
     function update(selectedOption) {
 
         if (selectedOption == "employment") {
+            //Switch y scale, annotations, text, and circles
             y.domain([35,d3.max(data, d => d.employment)])
                 
             chart.selectAll(".axis-y")
@@ -196,14 +200,14 @@
                 .attr("font-weight", "bold")
                 .text("Employment")   
 
-             annotation.transition()
-             .duration(3000)    
+            annotation.transition()
+                .duration(3000)    
                 .attr("x", 40)
                 .attr("y", 25)
                 .text("Qatar (87.52)");
         
            annotation2.transition()
-           .duration(3000)    
+                .duration(3000)    
                 .attr("x", 560)
                 .attr("y", 260)
                 .text("Republic of Korea (60.78)");
@@ -226,8 +230,7 @@
                 .attr("cy",  function(d) { return y(d.employment) })
                 .attr("r", 4)  
                     
-             circles.on("mouseover", function(event, d) {
-                console.log("THIS HAS CHANGED")
+            circles.on("mouseover", function(event, d) {
                 tooltip.style("opacity",1)
                         .style("visibility", "visible")
                         .style("left", (event.pageX) +"px")
@@ -237,15 +240,17 @@
                 d3.select(this)
                     .attr("r",4.5)
 
-                    chart.selectAll("circle").style("fill", "#003f5c")
+                chart.selectAll("circle")
+                    .style("fill", "#003f5c")
 
-                    d3.select(this).style("fill","#40E0D0")
+                d3.select(this)
+                    .style("fill","#40E0D0")
                     
-                })  
+            })  
         }
 
         if (selectedOption == "inflation") {
-            console.log("AMONG US")
+            //Switch y scale, annotations, text, and circles
             y.domain([0,d3.max(data, d => d.inflation)])
                 
             chart.selectAll(".axis-y")
@@ -272,7 +277,7 @@
                 .duration(3000)    
                 .attr("x", 560)
                 .attr("y", 515)
-                .text("Republic of Korea (154.76)");
+                .text("Republic of Korea (2.50)");
 
             lines.join("line")
                 .data(y.ticks().slice())
@@ -294,26 +299,30 @@
 
             circles.on("mouseover", function(event, d) {
                 tooltip.style("opacity",1)
-                .style("visibility", "visible")
-                .style("left", (event.pageX) +"px")
-                .style("top",  (event.pageY) + "px")
-                .html("<p> Country: " + d.country  + "<br>Inflation Rate: " + formatDecimal(d.inflation) + "</p>" )
-                console.log(d)
+                    .style("visibility", "visible")
+                    .style("left", (event.pageX) +"px")
+                    .style("top",  (event.pageY) + "px")
+                    .html("<p> Country: " + d.country  + "<br>Inflation Rate: " + formatDecimal(d.inflation) + "</p>" )
+                
+                //highlight
                 d3.select(this)
-                .attr("r",4.5)
-                //filter
+                    .attr("r",4.5)
+                //brush
                 chart.selectAll("circle").style("fill", "#003f5c")
                 d3.select(this).style("fill","#40E0D0")
-             }).on("mouseout", function(d) {
+            }).on("mouseout", function(d) {
+
                 d3.select(this).attr("r",3.5)
-                    tooltip.style("visibility", "hidden")
+                    
+                tooltip.style("visibility", "hidden")
                     .style("stroke","none")
-                        //filter
-                    chart.selectAll("circle").style("fill", "#40E0D0")
-                })           
+                    
+                chart.selectAll("circle").style("fill", "#40E0D0")
+            })           
         }
 
         if (selectedOption == "gdp") {
+            //Switch y scale, annotations, text, and circles
             y.domain([0,d3.max(data, d => d.gdp)])
                 
             chart.selectAll(".axis-y")
@@ -377,6 +386,7 @@
         }
 
         if (selectedOption == "population") {  
+            //Switch y scale, annotations, text, and circles
             y.domain([0,d3.max(data, d => d.population)])
                 
             chart.selectAll(".axis-y")
@@ -441,6 +451,7 @@
 
         }
 
+    //Function used to call button and change dependent variable values
     d3.select("#scatButton").on("change", function(d) {
             // recover the option that has been chosen
             var selectedOption = d3.select(this).property("value")
@@ -449,4 +460,4 @@
             update(selectedOption)
     });
 
-      });
+});
