@@ -20,7 +20,7 @@ d3.csv("csv/suicide_range.csv", function(d) {
 // Set up the SVG container
 const svgWidth = 950;
 const svgHeight = 400;
-const margin = { top: 20, right: 90, bottom: 40, left: 65 };
+const margin = { top: 20, right: 90, bottom: 40, left: 90 };
 const width = svgWidth - margin.left - margin.right;
 const height = svgHeight - margin.top - margin.bottom;
 
@@ -95,6 +95,13 @@ const lines = chart.selectAll("yGrid")
     .attr("stroke", "#e0e0e0")
     .attr("stroke-width", .5)
 
+const text = chart.append("text")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -65)
+        .attr("x", -margin.top + 30)
+        .attr("font-weight", "bold")
+        .text("Male Suicide Count")
 
 // Add X and Y axes
 chart.append("g")
@@ -112,11 +119,7 @@ var yAxis = d3.axisLeft().scale(y)
 chart.append("g")
     .attr("class", "axis-y")
     .call(d3.axisLeft(y).ticks(5))
-    .call((g) => g.select(".tick:last-of-type text").clone()
-        .attr("x", 9)
-        .attr("text-anchor", "start")
-        .attr("font-weight", "")
-        .text("Male Suicide Count"))
+   
 
 var paths = chart.append("path")
     .datum(male)
@@ -167,7 +170,16 @@ var circles = chart.selectAll("circle")
             chart.selectAll(".axis-y")
                 .transition()
                 .duration(3000)
-                .call(d3.axisLeft(y).ticks(6))
+                .call(d3.axisLeft(y).ticks(7))
+                
+            text.attr("text-anchor", "end")
+                .transition()
+                .duration(3000)    
+                .attr("transform", "rotate(-90)")
+                .attr("y", -35)
+                .attr("x", -margin.top + 10)
+                .attr("font-weight", "bold")
+                .text("Crude Death Rate")    
             
             lines.join("line")
                 .data(y.ticks().slice(3))
@@ -220,6 +232,16 @@ var circles = chart.selectAll("circle")
                 .transition()
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(6)) 
+
+            text.attr("text-anchor", "end")
+                .transition()
+                .duration(3000)    
+                .attr("text-anchor", "end")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -65)
+                .attr("x", -margin.top + 2)
+                .attr("font-weight", "bold")
+                .text("Male Suicide Count")
 
             lines.join("line")
                 .data(y.ticks().slice())
@@ -279,6 +301,16 @@ var circles = chart.selectAll("circle")
                 .transition()
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(6))
+                
+                 
+            text.attr("text-anchor", "end")
+                .transition()
+                .duration(3000)    
+                .attr("transform", "rotate(-90)")
+                .attr("y", -35)
+                .attr("x", -margin.top + 10)
+                .attr("font-weight", "bold")
+                .text("Age Standardized Death Rate")    
                 
             lines.join("line")
                 .data(y.ticks().slice(3))

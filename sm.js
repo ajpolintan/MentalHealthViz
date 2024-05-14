@@ -302,6 +302,7 @@
             .attr("cy",  function(d) { return y2(d.bipolar) })
         .attr("r", 2.4)
         .style("fill", "#8da0cb")
+        .style("fill", "gray")
         .on("mouseover", b_hover)
         .on("mouseout", exit)
 

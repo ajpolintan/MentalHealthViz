@@ -27,7 +27,7 @@
     // Set up the SVG container
     const svgWidth = 800;
     const svgHeight = 600;
-    const margin = { top: 20, right: 50, bottom: 40, left: 75 };
+    const margin = { top: 20, right: 100, bottom: 40, left: 80 };
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
    
@@ -84,6 +84,25 @@
         .domain([35, d3.max(data, d => d.employment)])
         .range([height, 0]);
     
+    const text = chart.append("text")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -35)
+        .attr("x", -margin.top + 2)
+        .attr("font-weight", "bold")
+        .text("Employment")
+
+    const annotation = chart.append("text")
+        .attr("x", 40)
+        .attr("y", 25)
+        .text("Qatar (87.52)");
+
+    const annotation2 = chart.append("text")
+        .attr("x", 560)
+        .attr("y", 260)
+        .text("Republic of Korea (60.78)");
+
+
     const lines = chart.selectAll("yGrid") 
         .data(y.ticks(8))
         .join("line")
@@ -156,22 +175,38 @@
     chart.append("g")
         .attr("class", "axis-y")
         .call(d3.axisLeft(y).ticks(10))
-        .call((g) => g.select(".tick:last-of-type text").clone()
-            .attr("x", 9)
-            .attr("text-anchor", "start")
-            .attr("font-weight", "bold")
-            .text("Employment Population Ratio")
-            )
+        
 
     function update(selectedOption) {
 
         if (selectedOption == "employment") {
-            y.domain([0,d3.max(data, d => d.employment)])
+            y.domain([35,d3.max(data, d => d.employment)])
                 
             chart.selectAll(".axis-y")
                 .transition()
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8))
+
+            text.attr("text-anchor", "end")
+                .transition()
+                .duration(3000)    
+                .attr("transform", "rotate(-90)")
+                .attr("y", -35)
+                .attr("x", -margin.top + 2)
+                .attr("font-weight", "bold")
+                .text("Employment")   
+
+             annotation.transition()
+             .duration(3000)    
+                .attr("x", 40)
+                .attr("y", 25)
+                .text("Qatar (87.52)");
+        
+           annotation2.transition()
+           .duration(3000)    
+                .attr("x", 560)
+                .attr("y", 260)
+                .text("Republic of Korea (60.78)");
                     
             lines.join("line")
                 .data(y.ticks().slice())
@@ -218,7 +253,27 @@
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8)) 
               
-            
+            text.attr("text-anchor", "end")
+                .transition()
+                .duration(3000)    
+                .attr("transform", "rotate(-90)")
+                .attr("y", -39)
+                .attr("x", -margin.top - 20)
+                .attr("font-weight", "bold")
+                .text("Inflation")   
+                
+            annotation.transition()
+                .duration(3000)    
+                .attr("x", 20)
+                .attr("y", 25)
+                .text("Lebanon (154.76)");
+
+            annotation2.transition()
+                .duration(3000)    
+                .attr("x", 560)
+                .attr("y", 515)
+                .text("Republic of Korea (154.76)");
+
             lines.join("line")
                 .data(y.ticks().slice())
                 .transition()
@@ -266,6 +321,27 @@
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8).tickFormat(d3.format(".1e")))
                     
+            annotation.transition()
+                .duration(3000)    
+                   .attr("x", 400)
+                   .attr("y", 25)
+                   .text("USA (23T)");
+            
+            annotation2.transition()
+                   .duration(3000)    
+                      .attr("x", 400)
+                      .attr("y", 25)
+                      .text("");
+
+            text.attr("text-anchor", "end")
+                .transition()
+                .duration(3000)    
+                .attr("transform", "rotate(-90)")
+                .attr("y", -65)
+                .attr("x", -margin.top - 20)
+                .attr("font-weight", "bold")
+                .text("GDP") 
+
             lines.join("line")
                 .data(y.ticks().slice(2))
                 .transition()
@@ -307,6 +383,27 @@
                 .transition()
                 .duration(3000)
                 .call(d3.axisLeft(y).ticks(8).tickFormat(d3.format(".2s")))
+
+            annotation.transition()
+                .duration(3000)    
+                   .attr("x", 400)
+                   .attr("y", 25)
+                   .text("USA (330M)");
+            
+            annotation2.transition()
+                   .duration(3000)    
+                      .attr("x", 400)
+                      .attr("y", 25)
+                      .text("");
+
+            text.attr("text-anchor", "end")
+                .transition()
+                .duration(3000)    
+                .attr("transform", "rotate(-90)")
+                .attr("y", -50)
+                .attr("x", -margin.top - 20)
+                .attr("font-weight", "bold")
+                .text("Population") 
                     
             lines.join("line")
                 .data(y.ticks())
