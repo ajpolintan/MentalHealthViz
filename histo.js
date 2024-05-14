@@ -149,10 +149,12 @@
                 .style("left", (event.pageX + 45) + "px")
                 .style("top",  (event.pageY - 100) + "px")
                 .html("<p> Count: " + d.count  + "<br>Year: " + d.year + "</p>" )
-               
-            chart.selectAll(".bar").style("fill", "#9ecae1")
+            chart.selectAll(".bar").style("fill", "#003f5c")
             d3.select(this)
-                .style("fill", "#008080")})
+                .style("fill", "#40E0D0")
+                .style("stroke","black")
+            })
+                
         .on("mouseout", function(event, d) { 
 
             tooltip.style("visibility", "hidden")
@@ -161,6 +163,8 @@
 
             d3.select(this)
                 .style("fill", "#40E0D0")
+                .style("stroke","none")
+
         })
       
      //we did it :]
