@@ -113,7 +113,7 @@ d3.csv("csv/crisis_center.csv", function(d) {
                     return 3.5;
                 })
                 .style("fill", "#40E0D0")
-                .style("stroke", "gray")
+                .style("stroke","black")
                 .style("opacity", 0.9)
                 .style("stroke-width", 0.25)
                 .on("mouseover", function(event, d) {

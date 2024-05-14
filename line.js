@@ -155,6 +155,7 @@ var circles = chart.selectAll("circle")
     .attr("cx", function(d) { return x(d.date) })
     .attr("cy",  function(d) { return y(d.count) })
     .attr("r", 4)
+    .style("stroke","black")
     .style("fill", "#40E0D0")
     .on("mouseover", function(event, d) {
         //Create tooltip
@@ -172,7 +173,7 @@ var circles = chart.selectAll("circle")
         d3.select(this).style("fill","#40E0D0")
     }).on("mouseout", function(d) {
         //Remove stroke line
-        d3.select(this).attr("r",3.5).style("stroke","none")
+        d3.select(this).attr("r",3.5)
         //Hide Tooltip
         tooltip.style("visibility", "hidden")
         .style("stroke","none")
